@@ -1,0 +1,19 @@
+﻿@model OCMovers_MC4.Models.Room
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+	<h2>Delete @Html.DisplayFor(model => model.RoomName)?</h2>
+
+
+	@using (Html.BeginForm()) {
+		<div class="btn-submit">
+			<input type="submit" value="Delete" class="btn content"/> <br /><br />
+			@Html.ActionLink("Back to List", "Index")
+		</div>
+}
+</div>

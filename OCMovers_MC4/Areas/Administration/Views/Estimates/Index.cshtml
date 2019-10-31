@@ -1,0 +1,43 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using System.Web.WebPages;
+
+@{
+    ViewBag.Title = "Index";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+	<h2>Estimate Submissions</h2>
+
+	<table>
+		
+
+	@foreach (var item in ViewBag.OnePageOfProducts)
+ {
+		<tr>
+			<td>
+				@Html.ActionLink("View", "Details", new { id=item.EstimateFormID }) |
+			</td>
+			<td>
+				@item.submitDate
+			</td>
+			<td>
+				@item.name
+			</td>
+			<td>
+				<a href="mailto:@item.name">@item.email</a>
+			</td>
+			
+			<td>
+				@item.phone
+			</td>
+		</tr>
+	}
+
+	</table>
+
+	<span class="pages">Pages:</span> @Html.PagedListPager( (IPagedList)@ViewBag.OnePageOfProducts, page => Url.Action("", new { page }) )
+
+</div>

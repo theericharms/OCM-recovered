@@ -1,0 +1,116 @@
+﻿@model OCMovers_MC4.Models.UserProfile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BFirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BFirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BLastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BLastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BPhone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BPhone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BAddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BAddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BAddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BAddressLine2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BCityProvince)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BCityProvince)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BState)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BState)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BCountry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BCountry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BPostal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BPostal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SoftDelete)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SoftDelete)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

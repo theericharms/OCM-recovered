@@ -1,0 +1,40 @@
+﻿@model OCMovers_MC4.ViewModel.Address
+<div id="addressForm">
+    <div class="field">
+        <div class="cancelBtn"><a href="#" id="cancelAddAddress">Cancel</a></div>
+        <div class="clearfix"></div>
+        <label>Address Type</label>
+        <select autocomplete="address-level1" class="select2 required type-select2 addressType" id="addressType" name="addressType">
+            <option></option>
+        </select>
+    </div>
+    <div class="field text">
+        <label>Building Name</label>
+        @Html.TextBoxFor(x => Model.BuildingName, new { autocomplete = "off" })
+    </div>
+    <div class="field">
+        <label>Address 1</label>
+        @Html.TextBoxFor(x => Model.Address1, new { @class = "required", autocomplete = "address-line1" })
+    </div>
+    <div class="field">
+        <label>Apartment Name or Number</label>
+        @Html.TextBoxFor(x => Model.AptNum, new { autocomplete = "address-line2" })
+    </div>
+    <div class="field">
+        <label>City</label>
+        @Html.TextBoxFor(x => Model.City, new { @class = "required", autocomplete = "address-level2" })
+    </div>
+    <div class="field">
+        <label>State</label>
+        <select autocomplete="address-level1" class="select2 required type-select2 state" id="loc1State" name="loc1State">
+            <option></option>
+        </select>
+    </div>
+    <div class="field horizontal postal">
+        <label>Postal Code</label>
+        @Html.TextBoxFor(x => Model.Postcode, new { @class = "required short", autocomplete = "postal-code", onkeypress = "return isNumber(event)", maxLength = 5 })
+    </div>
+    <div>
+        <input type="button" value="Add Address" class="btn btn-primary submitButton" id="addTheAddress">
+    </div>
+</div>

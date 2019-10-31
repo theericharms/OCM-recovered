@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OCMovers_MC4.Models.InventoryItem>
+
+@{
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+    var count = Model.Count();
+    var colNum = count / 4;
+    var i = 1;
+}
+
+@foreach (var item in Model) {
+
+        //<option value="@item.InventoryItemID" aria-relevant="@item.inventoryItem">@item.inventoryItem</option>
+
+    if (i == 1)
+    {
+         @Html.Raw("<div style=\"float: left; display: inline-block;\">")
+    }
+    
+    <div class="chx">
+        <input type="hidden" name="efRoom.RoomID" />
+        <div class="cont-chx"><input type="checkbox" value="@item.InventoryItemID" name="customOrId"/></div>
+        <div class="cont-qty"><input type="text" name="qty" class="qty inv-qty" placeholder="0"/></div>
+        <div class="cont-label"><label>@item.inventoryItem</label></div>
+    </div>
+    
+    if (i == colNum)
+    {           
+        @Html.Raw("</div>");
+        i = 1;
+    }
+    else
+    {
+        i++;
+    }
+}

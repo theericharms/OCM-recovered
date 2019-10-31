@@ -1,0 +1,53 @@
+﻿@model OCMovers_MC4.Models.LoginModel
+
+@{
+	ViewBag.Title = "Log On";
+    Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="account-login">
+<h2>Old City Movers Administration</h2>
+
+@*@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")*@
+    
+    <style>
+        .form-group {
+            padding-bottom: 10px;
+            overflow: auto;
+        }
+                
+    </style>
+
+    @using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>
+        <fieldset>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            
+            <div class="form-group checkbox" style="clear: both;">
+               @Html.CheckBoxFor(m => m.RememberMe) Remember Me?
+            </div>
+      
+            <div class="save-cancel form-group">
+                <ul>
+                    <li><input type="submit" value="Save" class="btn" style="width: auto !important;"/></li>
+                </ul>
+            </div>
+        </fieldset>
+    </div>
+}
+</div>

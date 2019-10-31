@@ -1,0 +1,33 @@
+﻿@model OCMovers_MC4.Models.Room
+
+@{
+    ViewBag.Title = "Create";
+	Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+    <h2>Add Room</h2>
+
+    @using (Html.BeginForm()) {
+    
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoomName)
+                @Html.TextBoxFor(model => model.RoomName, new {@class="form-control"})
+                @Html.ValidationMessageFor(model => model.RoomName)
+            </div>
+      
+            <div class="save-cancel form-group">
+                <ul>
+                    <li><a href="@Url.RouteUrl("Rooms")">Cancel</a></li>
+                    <li><input type="submit" value="Save" class="btn"/></li>
+                </ul>
+            
+            </div>
+        </fieldset>
+    }
+</div>

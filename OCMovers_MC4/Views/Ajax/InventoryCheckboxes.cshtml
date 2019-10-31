@@ -1,0 +1,14 @@
+﻿
+@using OCMovers_MC4.Models
+@model OCMovers_MC4.Models.InventoryItem
+
+@{
+	foreach(var item in (IEnumerable<InventoryItem>)Model)
+	{
+		<div class="chx">
+			@Html.LabelFor(x => x.inventoryItem)
+			@Html.TextBoxFor(x => x.inventoryItem, new { @class = "efRoom.RoomID"} )
+		</div>
+	
+	}	
+}

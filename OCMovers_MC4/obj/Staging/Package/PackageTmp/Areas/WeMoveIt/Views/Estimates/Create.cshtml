@@ -1,0 +1,363 @@
+﻿@model OCMovers_MC4.Models.EstimateForm
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>EstimateForm</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.submitDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.submitDate)
+            @Html.ValidationMessageFor(model => model.submitDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.moveDateStart)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.moveDateStart)
+            @Html.ValidationMessageFor(model => model.moveDateStart)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.moveDateEnd)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.moveDateEnd)
+            @Html.ValidationMessageFor(model => model.moveDateEnd)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EstimateGuid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EstimateGuid)
+            @Html.ValidationMessageFor(model => model.EstimateGuid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.moveDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.moveDescription)
+            @Html.ValidationMessageFor(model => model.moveDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeCurrent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeCurrent)
+            @Html.ValidationMessageFor(model => model.dwellingTypeCurrent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeCurrentFloorApt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeCurrentFloorApt)
+            @Html.ValidationMessageFor(model => model.dwellingTypeCurrentFloorApt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeCurrentFloorHouse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeCurrentFloorHouse)
+            @Html.ValidationMessageFor(model => model.dwellingTypeCurrentFloorHouse)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeDestination)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeDestination)
+            @Html.ValidationMessageFor(model => model.dwellingTypeDestination)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeDestinationFloorApt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeDestinationFloorApt)
+            @Html.ValidationMessageFor(model => model.dwellingTypeDestinationFloorApt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dwellingTypeDestinationFloorHouse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dwellingTypeDestinationFloorHouse)
+            @Html.ValidationMessageFor(model => model.dwellingTypeDestinationFloorHouse)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.numRoomsCurrent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.numRoomsCurrent)
+            @Html.ValidationMessageFor(model => model.numRoomsCurrent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.numRoomsDestination)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.numRoomsDestination)
+            @Html.ValidationMessageFor(model => model.numRoomsDestination)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1BuildingName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1BuildingName)
+            @Html.ValidationMessageFor(model => model.loc1BuildingName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1Address1)
+            @Html.ValidationMessageFor(model => model.loc1Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1Address2)
+            @Html.ValidationMessageFor(model => model.loc1Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1Apartment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1Apartment)
+            @Html.ValidationMessageFor(model => model.loc1Apartment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1City)
+            @Html.ValidationMessageFor(model => model.loc1City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1State)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1State)
+            @Html.ValidationMessageFor(model => model.loc1State)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc1Postal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc1Postal)
+            @Html.ValidationMessageFor(model => model.loc1Postal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2BuildingName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2BuildingName)
+            @Html.ValidationMessageFor(model => model.loc2BuildingName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2Address1)
+            @Html.ValidationMessageFor(model => model.loc2Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2Address2)
+            @Html.ValidationMessageFor(model => model.loc2Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2Apartment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2Apartment)
+            @Html.ValidationMessageFor(model => model.loc2Apartment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2City)
+            @Html.ValidationMessageFor(model => model.loc2City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2State)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2State)
+            @Html.ValidationMessageFor(model => model.loc2State)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loc2Postal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loc2Postal)
+            @Html.ValidationMessageFor(model => model.loc2Postal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.elevStairs)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.elevStairs)
+            @Html.ValidationMessageFor(model => model.elevStairs)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.elevStairsExp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.elevStairsExp)
+            @Html.ValidationMessageFor(model => model.elevStairsExp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.elevStairsRes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.elevStairsRes)
+            @Html.ValidationMessageFor(model => model.elevStairsRes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.elevStairsResExp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.elevStairsResExp)
+            @Html.ValidationMessageFor(model => model.elevStairsResExp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.stairsToFront)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.stairsToFront)
+            @Html.ValidationMessageFor(model => model.stairsToFront)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.stairsToFrontExp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.stairsToFrontExp)
+            @Html.ValidationMessageFor(model => model.stairsToFrontExp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longWalksToDoor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.longWalksToDoor)
+            @Html.ValidationMessageFor(model => model.longWalksToDoor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longWalksToDoorExp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.longWalksToDoorExp)
+            @Html.ValidationMessageFor(model => model.longWalksToDoorExp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.specialCareItem)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.specialCareItem)
+            @Html.ValidationMessageFor(model => model.specialCareItem)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.specialCareItemExp)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.specialCareItemExp)
+            @Html.ValidationMessageFor(model => model.specialCareItemExp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.estBoxCount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.estBoxCount)
+            @Html.ValidationMessageFor(model => model.estBoxCount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.agreeCorrect)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.agreeCorrect)
+            @Html.ValidationMessageFor(model => model.agreeCorrect)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.phone)
+            @Html.ValidationMessageFor(model => model.phone)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

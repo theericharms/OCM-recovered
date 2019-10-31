@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="ocitymovers.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^F:\\Development\\TFS\\OCMovers_MC4\\OCMovers_MC4\\obj\\Staging\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^F:\\Development\\TFS\\OCMovers_MC4\\OCMovers_MC4\\obj\\Staging\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="OCMovers_MVC4Context-Web.config Connection String" description="" value="Data Source=camellia.arvixe.com;Initial Catalog=ocm-staging;Integrated Security=false;User ID=db-ocm-staging;Password=$ocm1234$" tags="">
+    <parameterEntry kind="XmlFile" scope="F:\\Development\\TFS\\OCMovers_MC4\\OCMovers_MC4\\obj\\Staging\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OCMovers_MVC4Context']/@connectionString" />
+  </parameter>
+</parameters>

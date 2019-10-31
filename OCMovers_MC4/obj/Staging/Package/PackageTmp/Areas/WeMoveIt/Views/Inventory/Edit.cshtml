@@ -1,0 +1,36 @@
+﻿@model OCMovers_MC4.Models.InventoryItem
+
+@{
+    ViewBag.Title = "Edit";
+	Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+    <h2>Edit Room</h2>
+
+    @using (Html.BeginForm()) {
+    
+        @Html.ValidationSummary(true)
+    
+            <fieldset>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.inventoryItem)
+                @Html.TextBoxFor(model => model.inventoryItem, new {@class="form-control"})
+                @Html.ValidationMessageFor(model => model.inventoryItem)
+            </div>
+        
+             @Html.HiddenFor(model => model.InventoryItemID)
+
+
+            <div class="save-cancel form-group">
+                <ul>
+                    <li><a href="@Url.RouteUrl("Inventory")">Cancel</a></li>
+                    <li><input type="submit" value="Save" class="btn"/></li>
+                </ul>
+            
+            </div>
+        </fieldset>
+    }
+</div>

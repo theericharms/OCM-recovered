@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OCMovers_MC4.Models.InventoryItem>
+
+@{
+    ViewBag.Title = "Index";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+<h2>Inventory Items</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+
+
+@foreach (var item in Model) {
+    <tr>
+        
+		<td class="edits">
+            @Html.ActionLink("Edit", "Edit", new { id=item.InventoryItemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InventoryItemID })
+        </td>
+		<td>
+            @Html.DisplayFor(modelItem => item.inventoryItem)
+        </td>
+        
+    </tr>
+}
+
+</table>
+
+</div>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCMovers_MC4", "OCMovers_MC4\OCMovers_MC4.csproj", "{14FA07A6-61C3-4AF2-834D-E837308322CD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://apolloaudioanddata.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = OCMovers_MC4\\OCMovers_MC4.csproj
+		SccProjectName1 = OCMovers_MC4
+		SccLocalPath1 = OCMovers_MC4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{14FA07A6-61C3-4AF2-834D-E837308322CD}.Staging|Any CPU.Build.0 = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

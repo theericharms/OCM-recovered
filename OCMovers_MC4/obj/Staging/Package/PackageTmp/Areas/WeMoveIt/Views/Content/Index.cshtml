@@ -1,0 +1,65 @@
+﻿@model OCMovers_MC4.Models.Content
+
+@{
+    ViewBag.Title = "Edit";
+	Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+	<h2>Edit Content</h2>
+
+	@using (Html.BeginForm()) {
+		@Html.ValidationSummary(true)
+		<fieldset>
+			<legend></legend>
+
+			@Html.HiddenFor(model => model.ID)
+
+			<div class="editor-label">
+				@Html.LabelFor(model => model.About)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(model => model.About)
+				@Html.ValidationMessageFor(model => model.About)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Services)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(model => model.Services)
+				@Html.ValidationMessageFor(model => model.Services)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Contact)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(model => model.Contact)
+				@Html.ValidationMessageFor(model => model.Contact)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(model => model.FAQ)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(model => model.FAQ)
+				@Html.ValidationMessageFor(model => model.FAQ)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(model => model.Thanks)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(model => model.Thanks)
+				@Html.ValidationMessageFor(model => model.Thanks)
+			</div>
+
+			<p>
+				<input type="submit" value="Save" class="btn link" style="margin-left: 99px;" />
+			</p>
+		</fieldset>
+	}
+
+</div>

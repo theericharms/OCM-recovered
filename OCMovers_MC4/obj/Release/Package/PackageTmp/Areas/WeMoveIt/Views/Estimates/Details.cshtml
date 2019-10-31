@@ -1,0 +1,354 @@
+﻿
+@model OCMovers_MC4.ViewModel.EstimateDetail
+@using OCMovers_MC4.Models
+@{
+    ViewBag.Title = "Details";
+	Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+
+	//DateTime movestart = Model.Estimateform.moveDateStart;
+	DateTime moveend = Model.Estimateform.moveDateEnd;
+
+	string cFloorHouse = Model.Estimateform.dwellingTypeCurrentFloorHouse;
+	string dFloorHouse = Model.Estimateform.dwellingTypeDestinationFloorHouse;
+				
+}
+
+<div class="admin">
+
+	<h2>Estimate Submission Details</h2>
+
+
+<fieldset>
+
+        <table style="width: 600px;" cellpadding="5" cellspacing="0">
+            <tr>
+                <td colspan="2" style="border: none; padding: 0">
+
+                    @{
+                        if (Model.HasEstimate)
+                        {
+                            <a href="@Url.RouteUrl("EditCustomerEstimate", new {id = @Model.CustomerEstimateId})" class="gen-button-right">Edit Customer Estimate</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.RouteUrl("CreateCustomerEstimate", new {id = @Model.Estimateform.EstimateFormID})" class="gen-button-right">Create Customer Estimate</a>
+                        }
+}
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Current Location</b></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>@Model.Estimateform.name </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>@Model.Estimateform.email</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>@Model.Estimateform.phone</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Locations Information</b></td>
+            </tr>
+            <tr>
+                <td style="width: 190px; vertical-align: top;">Move Descripton:</td>
+                <td>@Model.Estimateform.moveDescription</td>
+            </tr>
+            @*<tr>
+                <td style="width: 190px;">Desired Move Start Date:</td>
+                <td>@String.Format("{0:dddd, MMMM d, yyyy}", @movestart)</td>
+            </tr>*@
+            <tr>
+                <td style="width: 190px;">Desired Move End Date:</td>
+                <td>@String.Format("{0:dddd, MMMM d, yyyy}", @moveend)</td>
+            </tr>
+            <tr>
+                <td style="width: 190px;">Move date is flexible:</td>
+                <td>
+                    @{
+                        if (@Model.Estimateform.IsDateFlexible)
+                        {
+                            <text>Yes</text>
+                        }
+                        else
+                        {
+                            <text>No</text>
+                        }
+                    }
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Current Location</b></td>
+            </tr>
+            <tr>
+                <td>Current Location:</td>
+
+                <td><a href="https://maps.google.com/maps?q=@Model.Estimateform.loc1Address1.Trim().Replace(" ", "+")+@Model.Estimateform.loc1City.Trim().Replace(" ", "+")+@Model.Estimateform.loc1State.Trim().Replace(" ", "+")+@Model.Estimateform.loc1Postal.Trim().Replace(" ", "+")" target="_blank">View Location</a></td>
+            </tr>
+            <tr>
+                <td style="width: 190px;">Current Dwelling Type:</td>
+                <td>@Model.Estimateform.dwellingTypeCurrent</td>
+            </tr>
+            @{
+                if (@Model.Estimateform.dwellingTypeCurrentFloorHouse == null)
+                {
+                    <tr>
+                        <td style="width: 190px;">Current Apt Floor:</td>
+                        <td>@Model.Estimateform.dwellingTypeCurrentFloorApt</td>
+                    </tr>
+
+                }
+                else
+                {
+                    <tr>
+                        <td style="width: 190px;">Current House Stories:</td>
+                        <td>@Model.Estimateform.dwellingTypeCurrentFloorHouse</td>
+                    </tr>
+
+                }
+            }
+            <tr>
+                <td>Elevator Stairs Current:</td>
+                <td>
+                    @{
+                        if (@Model.Estimateform.elevStairsCurrent != "Elevator" || @Model.Estimateform.elevStairsCurrent != "Stairs")
+                        {
+                            <text>None</text>
+                        }
+
+                        else
+                        {
+                            @Model.Estimateform.elevStairsCurrent;
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Number of Rooms Current:</td>
+                <td>@Model.Estimateform.numRoomsCurrent</td>
+            </tr>
+            <tr>
+                <td>Current Building Name:</td>
+                <td>@Model.Estimateform.loc1BuildingName</td>
+            </tr>
+            <tr>
+                <td>Current Address 1:</td>
+                <td>@Model.Estimateform.loc1Address1</td>
+            </tr>
+            <tr>
+                <td>Current Address 2:</td>
+                <td>@Model.Estimateform.loc1Address2</td>
+            </tr>
+            <tr>
+                <td>Current Apartment:</td>
+                <td>@Model.Estimateform.loc1Apartment</td>
+            </tr>
+            <tr>
+                <td>Current City:</td>
+                <td>@Model.Estimateform.loc1City</td>
+            </tr>
+            <tr>
+                <td>Current State:</td>
+                <td>@Model.Estimateform.loc1State</td>
+            </tr>
+            <tr>
+                <td>Current Postal Code:</td>
+                <td>@Model.Estimateform.loc1Postal</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Destination Location</b></td>
+            </tr>
+            <tr>
+                <td>Destination Location:</td>
+                <td><a href="https://maps.google.com/maps?q=@Model.Estimateform.loc2Address1.Trim().Replace(" ", "+")+@Model.Estimateform.loc2City.Trim().Replace(" ", "+")+@Model.Estimateform.loc2State.Trim().Replace(" ", "+")+@Model.Estimateform.loc2Postal.Trim().Replace(" ", "+")" target="_blank">View Location</a></td>
+            </tr>
+            <tr>
+                <td style="width: 190px;">Destination Dwelling Type:</td>
+                <td>@Model.Estimateform.dwellingTypeDestination</td>
+            </tr>
+            @{
+                if (@Model.Estimateform.dwellingTypeDestinationFloorHouse == null)
+                {
+                    <tr>
+                        <td style="width: 190px;">Destination Apt Floor:</td>
+                        <td>@Model.Estimateform.dwellingTypeDestinationFloorApt</td>
+                    </tr>
+
+                }
+                else
+                {
+                    <tr>
+                        <td style="width: 190px;">Destination House Stories:</td>
+                        <td>@Model.Estimateform.dwellingTypeDestinationFloorHouse</td>
+                    </tr>
+
+                }
+            }
+            <tr>
+                <td>Elevator Stairs Destination:</td>
+                <td>
+                    @{
+                        if (@Model.Estimateform.elevStairsDestination != "Elevator" && @Model.Estimateform.elevStairsDestination != "Stairs")
+                        {
+                            <text>Ground Floor</text>
+                        }
+
+                        else
+                        {
+                            @Model.Estimateform.elevStairsDestination
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Number of Rooms Destination:</td>
+                <td>@Model.Estimateform.numRoomsDestination</td>
+            </tr>
+            <tr>
+                <td>Destination Building Name:</td>
+                <td>@Model.Estimateform.loc2BuildingName</td>
+            </tr>
+            <tr>
+                <td>Destination Address 1:</td>
+                <td>@Model.Estimateform.loc2Address1</td>
+            </tr>
+            <tr>
+                <td>Destination Address 2:</td>
+                <td>@Model.Estimateform.loc2Address2</td>
+            </tr>
+            <tr>
+                <td>Destination Apartment:</td>
+                <td>@Model.Estimateform.loc2Apartment</td>
+            </tr>
+            <tr>
+                <td>Destination City:</td>
+                <td>@Model.Estimateform.loc2City</td>
+            </tr>
+            <tr>
+                <td>Destination State:</td>
+                <td>@Model.Estimateform.loc2State</td>
+            </tr>
+            <tr>
+                <td>Destination Postal Code:</td>
+                <td>@Model.Estimateform.loc2Postal</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Elevator Stairs Restrictions:</td>
+                <td>@helpers.trueFalse(@Model.Estimateform.elevStairsRes)</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Explanation</td>
+                <td>@Model.Estimateform.elevStairsResExp</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td>Stairs to front door:</td>
+                <td>@helpers.trueFalse(@Model.Estimateform.stairsToFront)</td>
+            </tr>
+            <tr>
+                <td>Number of steps at each location:</td>
+                <td>@Model.Estimateform.stairsToFrontExp</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td>Long Walks to Front Door:</td>
+                <td>@helpers.trueFalse(@Model.Estimateform.longWalksToDoor)</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Restrictions</td>
+                <td>@Model.Estimateform.longWalksToDoorExp</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            @*@{
+                if( ViewBag.EstimateFormInventory != null)
+                {
+                    <tr>
+                        <td style="vertical-align: top;">Inventory List:</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td style="width:150px;"><b>Room</b></td>
+                                    <td><b>Inventory Item</b></td>
+                                </tr>
+                                @{
+
+                                    foreach (var inv in ViewBag.EstimateFormInventory as IEnumerable<EstimateFormInventory>)
+                                    {
+                                        <tr>
+                                            <td style="width:150px;">@inv.efRoom.RoomName</td>
+                                            <td>
+                                                @{
+                                            if (@inv.CustomItem == null)
+                                                {
+                                                <text>( @inv.Qty )</text> @inv.efInvItem.inventoryItem
+                                                }
+                                                else
+                                                {
+                                                <text> ( @inv.Qty ) </text>@inv.CustomItem
+                                                }
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+
+                            </table>
+                        </td>
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>*@
+            <tr>
+                <td style="vertical-align: top;">Inventory:</td>
+                <td>@Model.Estimateform.InventoryWriteIn)</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Special Care Items:</td>
+                <td>@helpers.trueFalse(@Model.Estimateform.specialCareItem)</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Restrictions:</td>
+                <td>@Model.Estimateform.specialCareItemExp</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+            <tr>
+                <td>Estimated Box Count:</td>
+                <td>@Model.Estimateform.estBoxCount</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+            </tr>
+
+        </table>	</fieldset>
+	<p>
+		@Html.ActionLink("Back to List", "Index")
+	</p>
+</div>

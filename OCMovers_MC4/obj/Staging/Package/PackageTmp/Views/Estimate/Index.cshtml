@@ -1,0 +1,691 @@
+@using System.Web.Mvc.Html5
+@using OCMovers_MC4.ViewModel
+@model OCMovers_MC4.ViewModel.EstimateForm
+
+@{
+    ViewBag.Title = "Old City Movers :: Get an Estimate!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div>There are some errors</div>
+    }
+}
+
+<div class="estimate page-group">
+
+    <main class="container">
+        <h1 class="interior">OLD CITY MOVERS ESTIMATE</h1>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="content">
+                <div class="estimate-wrapper">
+                <form name="estimateForm" id="estimateForm">
+                    @Html.AntiForgeryToken()
+                    <div class="container">
+                    <div id="slides">
+                    <div class="slides_container">
+                    <div class="slide intro">
+                        <p class="heading">Before you start your estimate, please be aware of a couple things:</p>
+                        <ol>
+                            <li>Any moving company that you contact will be asking you to provide the same information we are requesting in this form, we hope that we have provided an efficient way for you to provide us the information we'll need to provide you the most accurate estimate possible.</li>
+                            <li>The more information you can tell us, the FASTER and MORE ACCURATELY we can prepare your estimate.</li>
+                            <li>Our schedule changes DAILY -- the quicker you can provide us the information for your form, the quicker we can help you get your move underway. Any delays in responding to the estimate we return to you can result in unavailability of your requested move date(s).</li>
+                            <li>After submitting your information, we usually get back to you via email within 24 hours with an estimate.</li>
+                        </ol>
+                        <p>We are going to ask for a list of the items in your house by room, so for best results, we recommend that you plan a few minutes to complete this form. </p>
+                        <p><br/>OK then -- let's begin!</p>
+                    </div>
+
+                    @*when would you like to move*@
+                        <div class="slide">
+                            <div class="question">
+                                <p class="heading">When would you like to move?</p>
+                                <div class="field text">
+                                    <label>Select your date</label>
+                                    <div style="overflow: auto;">@Html.TextBoxFor(x => Model.moveDateEnd, new { @class = "datepicker range short required", @Value = "", @id = "to" })</div>
+                                </div>
+                                <div class="checkbox" style="clear: both">
+                                    <label style="padding-left: 30px; float: left;">
+                                        ( Check this box if ) My requested move date could be flexible a day or two before or after the date I picked.
+                                        <div class="input sm cbox"></div>
+                                        @Html.CheckBoxFor(x => Model.IsDateFlexible, new { style = "width: 30px; height: 30px; display: none;", @Class = "gaCb", value = false })
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    @*Have you used Old City Movers in the past?*@
+                    <div class='slide question-group'>
+                        <div class="question">
+                            <p class="heading">Have you used Old City Movers in the past?</p>
+                            <div class="field radio">
+                                <div class="radio-group">
+                                    <div class="input radio">
+                                        <div class="rbox rdio inparent hasHidden" id="true"></div>
+                                        <label>Yes</label>
+                                    </div>
+                                    <div class="input radio">
+                                        <div class="rbox inparent" id="false"></div>
+                                        <label>No</label>
+                                    </div>
+                                    @Html.HiddenFor(x => x.PreviousCustomer, new { @class = "required type-radio required reveal", @Value = "" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question hiddener">
+                            <p class="heading">Please provide the name or email that your previous job was booked under, if different from this form.</p>
+                            <div class="field">
+                                @Html.TextAreaFor(x => x.PreviousCustomerName, new { @class = "mceNoEditor" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*packing service*@
+                    <div class="slide">
+                        <div class="question">
+                            <div class="field">
+                                <p class="heading bigCheckbox">
+                                    Would you be interested in using our packing service (we'd have a team come out the day before your move to pack your belongings into boxes and supply all the boxes, tape, etc)?
+                                </p>
+                                <div class="input big cbox"></div>
+                                @Html.HiddenFor(x => x.packingServices, new {@class = "type-checkbox  gaCb", @Value = "false"})
+                            </div>
+                        </div>
+                    </div>
+
+                    @*address*@
+                    <div class="slide addresses">
+                        <div class="question">
+                            <p class="heading">Please provide the addresses of all stops (include apartment numbers and names of buildings if applicable), including your start, ending and any in between (ie storage units) that will be necessary for the job.</p>
+
+                            <div id="addressList">
+                                <p>Your have [ <span id="addressCount">0</span> ] addresses<br/>Please add at least [ 2 ]
+                                </p>
+                                <ul id="list" style="list-style: none;"><li class="note">No addresses added yet</li></ul>
+                            </div>
+                            <div class="sortNote">Tip!<br/><span>Arrange the order of your locations by dragging the <i class="fa fa-bars"></i>.  We'll use your ordering of locations to help plan your move.</span></div>
+                            <a href="#" title="Add another location" id="addAddress" class="btn btn-primary add-address hide">Add another location</a>
+                            
+                            <div id="address">
+                                @Html.Partial("~/Views/Estimate/_addAddress.cshtml", (Address)Model.Address, new ViewDataDictionary())
+                            </div>
+                            <div id="answers"></div>
+                        </div>
+                    </div>
+
+                    @*special situations*@
+                    <div class='slide'>
+                        <div class="question" id="addLocation">
+                            <p class="heading">Please describe any special situations, additional stops/pick ups, storage units, drop off, etc. Anything that will help us better understand the scope of your move.</p>
+                            <div class="field">
+                                @Html.TextAreaFor(x => x.moveDescription, new {@class = "mceNoEditor"})
+                            </div>
+                        </div>
+                    </div>
+
+                    @*feedback*@
+                    <div class='slide'>
+                        <div class="question" id="feedback">
+                            <p class="heading">(optional) Let us know your thoughts about this form, the website, or service. We appreciate any and all feedback!</p>
+                            <div class="field">
+                                @Html.TextAreaFor(x => x.Feedback, new {@class = "mceNoEditor"})
+                            </div>
+                        </div>
+                    </div>
+
+                    @*big checkbox name phone email*@
+                    <div class="slide">
+                        <div class="question">
+                            <div class="field">
+                                <p class="heading bigCheckbox">I agree that all the information I have provided has been reviewed for accuracy and is correct.</p>
+                                <div class="input big cbox"></div>
+                                @Html.HiddenFor(x => x.agreeCorrect, new {@class = "required type-checkbox agree required gaCb", @Value = ""})
+                            </div>
+
+                            <p>Please also provide us your name, email and phone number, we will get back to you with an estimate in 24 hours (excluding weekends, will get back to you on Monday). Old City Movers office hours 8am - 4pm Monday thru Friday. You'll recieve a copy of this form to your email for your records.</p>
+                            <div class="field">
+                                <label>Name</label>
+                                @Html.TextBoxFor(x => x.name, new {@class = "medium required", autocomplete = "off"})
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                @Html.TextBoxFor(x => x.email, new {@class = "medium required email", autocomplete = "off"})
+                            </div>
+                            <div class="field">
+                                <label>Phone (10 digits numbers only!)</label>
+                                @Html.TextBoxFor(x => x.phone, new {@class = "medium required", maxlength = 10, autocomplete = "off"})
+                            </div>
+                        </div>
+                    </div>
+
+                    @*submit*@
+                    <div class='slide'>
+                        <div class="field navigation formSubmit">
+                            <input type="submit" value="Submit for Estimate" class="btn btn-primary">
+                        </div>
+                        <div class="errorList">
+                            OOPS! There are <span class="errorCount errorNote"></span> errors in your form.<br/>
+                            Please correct the <span class="errorNote">RED</span> input items above.
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Please confirm your inventory</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for contacting Old City Movers!</p>
+                    <p>We would be happy to provide you with our hourly rates and an estimate. If you could please double-check that you’ve answered YES! to the following questions:</p>
+                    <ul>
+                        <li>Do you feel your estimated box count is correct?</li>
+                        <li>Did you provide a detailed listing of all of the furniture by room?</li>
+                    </ul>
+                    <p>Please understand that we are only asking for such specific information so that we may provide you with an accurate estimate, which will prevent delays in booking your job, and additional costs required to complete your move.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>
+                    <button type="button" class="btn btn-primary submit btn">All looks good, SUBMIT my estimate!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Oops! There were some errors in your submission:</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="errorText"></p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>*@
+                    <button type="button" class="btn btn-primary btn" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Oops! Are you done adding your addresses?</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="notEnoughAddresses">We don't seem to have all the required addresses completed in your form, we need at least [ 2 ]. Please make sure all your addresses are added to the form before submitting your estimate.</p>
+                    <p id="openAddressForm">It looks like you were adding an address and did not click "Add location". Please either complete adding the address to your estimate or remove it by clicking "Clear a" before submitting your estimate. Reminder, we need at least [ 2 ] addresses. Please make sure all your addresses are added to the form before submitting your estimate.</p>
+                    <p id="noStartingOrEnding">It looks like you haven't added either a Starting or Ending Location.  Both are required.  You can add a second ending location if you are splitting up items from the Starting Location, or add an Additional Stop.</p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>*@
+                    <button type="button" class="btn btn-primary btn addressOk" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="secondStartingAddress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Oops! You've already added your starting address!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>It looks like you've already selected a starting address.  You can delete the first one and then add  it again, or add another type of address.</p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>*@
+                    <button type="button" class="btn btn-primary btn addressOk" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @if (WebSecurity.IsAuthenticated)
+    {
+        {
+            <script>
+                $(document).ready(function() {
+
+
+                    var easterEgg = 'a';
+                    var eggLength = easterEgg.length;
+                    var keyHistory = '';
+                    var match, match1, match2, match3;
+
+
+                    $(document).keypress(function (e) {
+
+                        keyHistory += String.fromCharCode(e.which)
+                        match = keyHistory.match(easterEgg);
+                        match1 = keyHistory.match(1);
+                        match2 = keyHistory.match(2);
+                        match3 = keyHistory.match(3);
+                        match4 = keyHistory.match(4);
+
+                        if (match) {
+                            $('input[name="moveDateStart"]').val("9/1/2014");
+                            $('input[name="moveDateEnd"]').val("9/1/2014");
+                            $('textarea[name="moveDescription"]').val("Move Description");
+
+                            $('input[name="loc1BuildingName"]').val("Building Name 1");
+                            $('input[name="loc1Address1"]').val("450 Sherwood Drive");
+                            $('input[name="loc1Address2"]').val("Current Address 2");
+                            $('input[name="loc1Apartment"]').val("206");
+                            $('input[name="loc1City"]').val("Sausalito");
+                            $("#loc1State").val('California').trigger("change");
+                            $('input[name="loc1Postal"]').val("19125");
+
+                            $('input[name="loc2BuildingName"]').val("Building Name 2");
+                            $('input[name="loc2Address1"]').val("155 Summit Drive");
+                            $('input[name="loc2Address2"]').val("Dest Address2");
+                            $('input[name="loc2Apartment"]').val("Destination Apt Name");
+                            $('input[name="loc2City"]').val("Corte Madera");
+                            $('select[name="loc2State"]').select2('val', 'California');
+                            $("#loc2State").val('California').trigger("change");
+                            $('input[name="loc2Postal"]').val("94965");
+
+                            $('.rdio').each(function() {
+                                $(this).addClass('active');
+                                var thisVal = $(this).attr('id');
+                                var thisInput = $(this).closest('.radio-group').find('input:hidden');
+                                $(thisInput).val(thisVal);
+                            });
+                            $('.slide').each(function() { $(this).find('.question.hiddener').show(); });
+
+                            $('.dropdown.select2').each(function() {
+
+                                var id = $(this).attr('id');
+                                var value = $("#" + id + " option:nth-child(2)").val();
+                                $("#" + id).val(value).trigger("change");
+
+                            });
+
+
+                            $('textarea').each(function() {
+                                var thisTitle = $(this).closest('.question').find('.heading').text();
+                                $(this).val('Sample text - ' + thisTitle);
+                                $(this).addClass('required');
+                            });
+
+                            $('#dwellingTypeCurrent').val('House');
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).show();
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).find('.dropdown-toggle span').text('1-2 Stories');
+
+                            $('#dwellingTypeDestination').val('House');
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).show();
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).find('.dropdown-toggle span').text('1-2 Stories');
+
+                            $('#numRoomsCurrent').val(2);
+                            $('#numRoomsCurrent').closest('.input').find('.dropdown-toggle span').text('2');
+
+                            $('input[name="ccNumber"]').parent('td').append('<input type="hidden" name="testmode" id="testmode" value="true" />');
+
+                            $('input[name="name"]').val('Eric Harms');
+
+                            $('input[name="email"]').val('eric.harms@gmail.com');
+                            $('input[name="phone"]').val('2679804251');
+
+                            $('#PreviousCustomerName').val($('#name').val() + ' ' + $('#email').val());
+
+                            $('.input.big.cbox').addClass('active');
+                            $('#packingServices').val(true);
+                            $('#agreeCorrect').val(true);
+
+
+                        } else if (match1) {
+
+                            // starting house
+
+                            var value = $("#addressType option:nth-child(2)").val();
+                            $("#addressType").val(value).trigger("change");
+                            $("#BuildingName").val("Starting building name");
+                            $("#Address1").val("155 Summit Drive");
+                            $("#AptNum").val("Apt 1");
+                            $("#City").val("Corte Madera");
+
+                            var state = $("#loc1State option:nth-child(6)").val();
+                            $("#loc1State").val(state).trigger("change");
+                            $("#Postcode").val("94925");
+
+                            $('#rgroup-HouseOrApt').find('.rbox').eq(0).trigger("click");
+
+                            setTimeout(function() {
+                                var stories = $("#HouseStories option:nth-child(2)").val();
+                                $("#HouseStories").val(stories).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(1).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(2).find('.rbox').eq(1).trigger('click');
+
+                                var brooms = $("#NumberOfBedrooms option:nth-child(2)").val();
+                                $("#NumberOfBedrooms").val(brooms).trigger("change");
+
+                                $("#Inventory").html("asdasdfasdfasdfasd");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(5).find('.rbox').eq(1).trigger('click');
+
+                                var bcount = $("#BoxCount option:nth-child(2)").val();
+                                $("#BoxCount").val(bcount).trigger("change");
+
+                                $("#Notes").val("notes here1");
+
+                            }, 500)
+
+
+                            scrollToAddButton()
+
+                        } else if (match4) {
+
+                            // additional storage
+
+                            var value = $("#addressType option:nth-child(4)").val();
+                            $("#addressType").val(value).trigger("change");
+
+                            $("#BuildingName").val("CSI Mini storage");
+                            $("#Address1").val("855 Parr Blvd");
+                            //$("#AptNum").val("Apt 1");
+                            $("#City").val("Richmond");
+
+                            var state = $("#loc1State option:nth-child(6)").val();
+                            $("#loc1State").val(state).trigger("change");
+                            $("#Postcode").val("94801");
+
+                            $('#rgroup-HouseOrApt').find('.rbox').eq(3).trigger("click");
+
+                            setTimeout(function() {
+                                //var stories = $("#HouseStories option:nth-child(2)").val();
+                                //$("#HouseStories").val(stories).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(0).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(0).find('.hidden-groundfloor-elevator').find('.rbox').eq(1).trigger('click');
+
+                                var aptfloor = $("#AptFloor option:nth-child(2)").val();
+                                $("#AptFloor").val(aptfloor).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(1).find('.rbox').eq(1).trigger('click');
+
+
+                                $('#addressTypeForm').find('.field.form-group').eq(2).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(3).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(4).find('.rbox').eq(1).trigger('click');
+
+                                var brooms = $("#NumberOfBedrooms option:nth-child(2)").val();
+                                $("#NumberOfBedrooms").val(brooms).trigger("change");
+
+                                $("#Inventory").val("inventory");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(7).find('.rbox').eq(1).trigger('click');
+
+                                var bcount = $("#BoxCount option:nth-child(2)").val();
+                                $("#BoxCount").val(bcount).trigger("change");
+
+                                $("#Notes").val("notes here1");
+
+                            }, 500)
+
+                            scrollToAddButton()
+
+                        } else if (match2) {
+
+                            // ending apt
+
+                            var value = $("#addressType option:nth-child(3)").val();
+                            $("#addressType").val(value).trigger("change");
+
+                            $("#BuildingName").val("Ending building name");
+                            $("#Address1").val("450 Sherwood drive");
+                            $("#AptNum").val("#405");
+                            $("#City").val("Sausalito");
+
+                            var state = $("#loc1State option:nth-child(6)").val();
+                            $("#loc1State").val(state).trigger("change");
+                            $("#Postcode").val("94965");
+
+                            $('#rgroup-HouseOrApt').find('.rbox').eq(1).trigger("click");
+
+                            setTimeout(function() {
+
+                                $('#addressTypeForm').find('.field.form-group').eq(0).find('.rbox').eq(1).trigger('click');
+
+                                var aptfloor = $("#AptFloor option:nth-child(2)").val();
+                                $("#AptFloor").val(aptfloor).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(1).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(2).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(3).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(4).find('.rbox').eq(1).trigger('click');
+
+                                var brooms = $("#NumberOfBedrooms option:nth-child(2)").val();
+                                $("#NumberOfBedrooms").val(brooms).trigger("change");
+
+                                $("#Inventory").val("inventory");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(7).find('.rbox').eq(1).trigger('click');
+
+                                var bcount = $("#BoxCount option:nth-child(2)").val();
+                                $("#BoxCount").val(bcount).trigger("change");
+
+                                $("#Notes").val("notes here1");
+
+                            }, 500)
+
+
+                            scrollToAddButton()
+
+                        } else if (match3) {
+
+                            // additional office
+
+                            var value = $("#addressType option:nth-child(4)").val();
+                            $("#addressType").val(value).trigger("change");
+
+                            $("#BuildingName").val("Office Building Name");
+                            $("#Address1").val("928 Harrison");
+                            $("#AptNum").val("Suite 200");
+                            $("#City").val("San Francisco");
+
+                            var state = $("#loc1State option:nth-child(6)").val();
+                            $("#loc1State").val(state).trigger("change");
+                            $("#Postcode").val("94925");
+
+                            $('#rgroup-HouseOrApt').find('.rbox').eq(2).trigger("click");
+
+                            setTimeout(function() {
+                                //var stories = $("#HouseStories option:nth-child(2)").val();
+                                //$("#HouseStories").val(stories).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(0).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(0).find('.hidden-elev-stairs-time').find('.rbox').eq(1).trigger('click');
+
+                                var aptfloor = $("#AptFloor option:nth-child(2)").val();
+                                $("#AptFloor").val(aptfloor).trigger("change");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(1).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(2).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(3).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(4).find('.rbox').eq(1).trigger('click');
+                                $('#addressTypeForm').find('.field.form-group').eq(5).find('.rbox').eq(1).trigger('click');
+
+                                var brooms = $("#NumberOfBedrooms option:nth-child(2)").val();
+                                $("#NumberOfBedrooms").val(brooms).trigger("change");
+
+                                $("#Inventory").val("inventory");
+
+                                $('#addressTypeForm').find('.field.form-group').eq(7).find('.rbox').eq(1).trigger('click');
+
+                                var bcount = $("#BoxCount option:nth-child(2)").val();
+                                $("#BoxCount").val(bcount).trigger("change");
+
+                                $("#Notes").val("notes here1");
+
+                            }, 500)
+
+
+                            scrollToAddButton()
+                        }
+
+                        keyHistory = match = '';
+                    });
+                });
+
+                function scrollToAddButton() {
+
+                    if ($("#addTheAddress").offset() != undefined) {
+                        $('html, body').animate({
+                            scrollTop: $("#addTheAddress").offset().top - 50
+                        }, 300);
+                    }
+
+                }
+
+            </script>
+        }
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            setupInputs();
+
+            //$('select.state').select2({
+            //    data: states,
+            //    maximumSelectionLength: 2
+            //});
+
+            //$('select.stories-house').select2({
+            //    data: houseStories,
+            //    maximumSelectionLength: 2,
+            //    dropdownAutoWidth: true,
+            //    width: 'auto',
+            //    placeholder: 'Select your house stories'
+            //});
+
+            //$('select.floor-apt').select2({
+            //    data: currentFloorApt,
+            //    maximumSelectionLength: 2,
+            //    dropdownAutoWidth: true,
+            //    width: 'auto',
+            //    placeholder: 'Select your apartment floor number'
+            //});
+
+            //$('select.bedrooms').select2({
+            //    data: bedrooms,
+            //    maximumSelectionLength: 2,
+            //    dropdownAutoWidth: true,
+            //    width: 'auto',
+            //    placeholder: 'Select number of rooms'
+            //});
+
+            //$('select.boxCount').select2({
+            //    data: boxCount,
+            //    maximumSelectionLength: 2,
+            //    dropdownAutoWidth: true,
+            //    width: 'auto',
+            //    placeholder: 'Select your box count'
+            //});
+
+            $("select").on("select2:close", function(e) {
+                $(this).valid();
+            });
+
+            //$('select.state').select2({
+            //    data: states,
+            //    maximumSelectionLength: 2
+            //});
+
+            //$('select.addressType').select2({
+            //    data: locationTypes,
+            //    maximumSelectionLength: 2,
+            //    width: "style"
+            //});
+
+            //$('#HouseStories').select2({
+            //    data: houseStories,
+            //    maximumSelectionLength: 2,
+            //    placeholder: 'Select your house stories',
+            //    width: "auto"
+            //});
+
+            //$('#AptFloor').select2({
+            //    data: currentFloorApt,
+            //    maximumSelectionLength: 2,
+            //    placeholder: 'Select your apartment floor number',
+            //    width: "auto"
+            //});
+
+            //$('#NumberOfBedrooms').select2({
+            //    data: bedrooms,
+            //    maximumSelectionLength: 2,
+            //    placeholder: 'Select number of rooms'
+            //});
+
+            jQuery.fn.ForceNumericOnly =
+                function() {
+                    return this.each(function() {
+                        $(this).keydown(function(e) {
+                            var key = e.charCode || e.keyCode || 0;
+                            // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                            // home, end, period, and numpad decimal
+                            return (
+                                key == 8 ||
+                                    key == 46 ||
+                                    (key >= 35 && key <= 40) ||
+                                    (key >= 48 && key <= 57) ||
+                                    (key >= 96 && key <= 105));
+                        });
+                    });
+                }
+
+            $("#phone").ForceNumericOnly();
+
+            $('form').submit(function() {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: "/Estimate/SendEstimate",
+                        type: "POST",
+                        data: $(this).serialize(),
+                        success: function(result) {
+                            if (!result.result == "success") {
+                                $('#errorText').html(result.result);
+                                $('#errorModal').modal('show');
+                            } else {
+                                window.location.replace("/Estimate/Thanks");
+                            }
+
+                        }
+                    });
+                }
+                return false;
+            });
+        })
+    </script>
+
+}
+
+
+
+
+

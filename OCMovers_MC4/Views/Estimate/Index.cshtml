@@ -1,0 +1,773 @@
+@using System.Web.Mvc.Html5
+@model OCMovers_MC4.ViewModel.EstimateForm
+
+@{
+    ViewBag.Title = "Old City Movers :: Get an Estimate!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div>There are some errors</div>
+    }
+}
+
+<div class="estimate page-group">
+
+    <main class="container">
+        <h1 class="interior">OLD CITY MOVERS ESTIMATE</h1>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="content">
+                    <div class="estimate-wrapper">
+                        <form name="estimateForm" id="estimateForm">
+                            @Html.AntiForgeryToken()
+                            <div class="container">
+                                <div id="slides">
+                                    <div class="slides_container">
+                                        <div class="slide intro">
+                                            <p class="heading">Before you start your estimate, please be aware of a couple things:</p>
+                                            <ol>
+                                                <li>Any moving company that you contact will be asking you to provide the same information we are requesting in this form, we hope that we have provided an efficient way for you to provide us the information we'll need to provide you the most accurate estimate possible.</li>
+                                                <li>The more information you can tell us, the FASTER and MORE ACCURATELY we can prepare your estimate.</li>
+                                                <li>Our schedule changes DAILY -- the quicker you can provide us the information for your form, the quicker we can help you get your move underway. Any delays in responding to the estimate we return to you can result in unavailability of your requested move date(s).</li>
+                                                <li>After submitting your information, we usually get back to you via email within 24 hours with an estimate.</li>
+                                            </ol>
+                                            <p>We are going to ask for a list of the items in your house by room, so for best results, we recommend that you plan a few minutes to complete this form (depending on how many items you have in your currrent dwelling). </p>
+                                            <p>OK then -- let's begin!</p>
+                                        </div>
+
+                                        @*when would you like to move*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">When would you like to move?</p>
+                                                <div class="field text">
+                                                    <label>Select your date</label>
+                                                    <div>@Html.TextBoxFor(x => Model.moveDateEnd, new { @class = "datepicker range short required", @Value = "", @id = "to" })</div>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label style="padding-left: 30px; float: left;">
+                                                        ( Check this box if ) My requested move date could be flexible a day or two before or after the date I picked.
+                                                        <div class="input sm cbox"></div>
+                                                        @Html.CheckBoxFor(x => Model.IsDateFlexible, new { style = "width: 30px; height: 30px; display: none;", @Class = "gaCb", value = false })
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*Have you used Old City Movers in the past?*@
+                                        <div class='slide'>
+                                            <div class="question">
+                                                <p class="heading">Have you used Old City Movers in the past?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="true"></div>
+                                                            <label>Yes</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="false"></div>
+                                                            <label>No</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.PreviousCustomer, new { @class = "required type-radio required reveal", @Value = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Please provide the name or email that your previous job was booked under, if different from this form.</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.PreviousCustomerName, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*packing service*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <div class="field">
+                                                    <p class="heading bigCheckbox">
+                                                        Would you be interested in using our packing service (we'd have a team come out the day before your move to pack your belongings into boxes and supply all the boxes, tape, etc)?
+                                                    </p>
+                                                    <div class="input big cbox"></div>
+                                                    @Html.HiddenFor(x => x.packingServices, new { @class = "type-checkbox  gaCb", @Value = "false" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*<div class="slide">
+                                                <div class="question">
+                                                    <p class="heading">Please provide the addresses of all stops (include apartment numbers and names of buildings if applicable), including your start, ending and any in between (ie storage units) that will be necessary for the job.
+                                                        <p>You can add your addresses in order, or you can rearrange them by clicking and dragging on the address line once you've added more than [ 1 ] address to your list.</p>
+                                                    <div id="addressList">
+                                                        <p>Your have [ <span id="addressCount">0</span> ] addresses ( please add at least [ 2 ])
+                                                        </p>
+                                                        <ul id="list" style="list-style: none;"><li class="note">No addresses added yet</li></ul>
+                                                    </div>
+                                                    <a href="#" title="Add an address" id="addAddress" class="btn btn-primary add-address">Add an address</a>
+                                                    <div id="address"></div>
+                                                    <div id="answers"></div>
+                                                </div>
+                                            </div>*@
+
+                                        @*addresses*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">Please provide the start and end addresses (include apartment numbers and names of buildings if applicable)</p>
+                                                <div class="left">
+                                                    <div class="startingfrom">~ Current location ~</div>
+                                                    <div class="field text">
+                                                        <label>Building Name</label>
+                                                        @Html.TextBoxFor(x => Model.loc1BuildingName, new { autocomplete = "off" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>Address 1</label>
+                                                        @Html.TextBoxFor(x => Model.loc1Address1, new { @class = "required", autocomplete = "address-line1" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>Apartment Name or Number</label>
+                                                        @Html.TextBoxFor(x => Model.loc1Apartment, new { autocomplete = "address-line2" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>City</label>
+                                                        @Html.TextBoxFor(x => Model.loc1City, new { @class = "required", autocomplete = "address-level2" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>State</label>
+                                                        <select autocomplete="address-level1" class="select2 required type-select2 state" id="loc1State" name="loc1State">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="field horizontal postal">
+                                                        <label>Postal Code</label>
+                                                        @Html.TextBoxFor(x => Model.loc1Postal, new { @class = "required short", autocomplete = "postal-code" })
+                                                    </div>
+                                                </div>
+                                                <div class="right">
+                                                    <div class="startingfrom">~Your destination ~</div>
+                                                    <div class="field text">
+                                                        <label>Building Name</label>
+                                                        @Html.TextBoxFor(x => Model.loc2BuildingName)
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>Address 1</label>
+                                                        @Html.TextBoxFor(x => Model.loc2Address1, new { @class = "required" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>Apartment Name or Number</label>
+                                                        @Html.TextBoxFor(x => Model.loc2Apartment)
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>City</label>
+                                                        @Html.TextBoxFor(x => x.loc2City, new { @class = "required" })
+                                                    </div>
+                                                    <div class="field">
+                                                        <label>State</label>
+                                                        <select class="select2 required type-select2 state" autocomplete="address-level1" id="loc2State" name="loc2State">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="field horizontal postal">
+                                                        <label>Postal Code</label>
+                                                        @Html.TextBoxFor(x => x.loc2Postal, new { @class = "short required" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <p style="font-size: 26px;">
+                                                If there are any other stops along the way, such as a storage unit, garage, etc, <a href="#" id="gotoAddLocation">please click here to add this information in your move description.</a>
+                                            </p>
+                                        </div>
+
+                                        @*current address house or apt*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">Current Address: Is this a house or apartment?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="House"></div>
+                                                            <label>House</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Apartment"></div>
+                                                            <label>Apartment</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.dwellingTypeCurrent, new { @class = "required type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Do you have stairs or elevators at your current location?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="Stairs"></div>
+                                                            <label>Stairs</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Elevator"></div>
+                                                            <label>Elevator</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Ground Floor"></div>
+                                                            <label>Ground Floor</label>
+                                                        </div>
+
+                                                        @Html.HiddenFor(x => x.elevStairsCurrent, new { @Value = "", @class = "required type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener2">
+                                                <p class="heading">How many stories is your house?</p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 stories-house dropdown" id="dwellingTypeCurrentFloorHouse" name="dwellingTypeCurrentFloorHouse">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener3" style="display: none; margin-top: 20px;">
+                                                <p class="heading">What floor are you on?</p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 floor-apt dropdown" id="dwellingTypeCurrentFloorApt" name="dwellingTypeCurrentFloorApt">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*destination house or apt*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">Destination Address: Is this a house or apartment?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="House"></div>
+                                                            <label>House</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Apartment"></div>
+                                                            <label>Apartment</label>
+                                                        </div>
+
+                                                        @Html.HiddenFor(x => x.dwellingTypeDestination, new { @Value = "", @class = "required type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Do you have stairs or elevators at your destination location?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="Stairs"></div>
+                                                            <label>Stairs</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Elevator"></div>
+                                                            <label>Elevator</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Ground Floor"></div>
+                                                            <label>Ground Floor</label>
+                                                        </div>
+
+                                                        @Html.HiddenFor(x => x.elevStairsDestination, new { @Value = "", @class = "required type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener2">
+                                                <p class="heading">How many stories is your house?</p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 stories-house dropdown" id="dwellingTypeDestinationFloorHouse" name="dwellingTypeDestinationFloorHouse">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener3" style="display: none; margin-top: 20px;">
+                                                <p class="heading">What floor are you on?</p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 floor-apt dropdown" id="dwellingTypeDestinationFloorApt" name="dwellingTypeDestinationFloorApt">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        @*time restrictions*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">Are there any time restrictions on elevator or stair usage at each location?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="true"></div>
+                                                            <label>Yes</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="false"></div>
+                                                            <label>No</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.elevStairsRes, new { @class = "type-radio reveal required", @Value = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Please describe the restrictions at either location</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.elevStairsResExp, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*stairs to front door*@
+                                        <div class='slide'>
+                                            <div class="question">
+                                                <p class="heading">Are there stairs leading up to your front door from the street at either your current or destination locations?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="true"></div>
+                                                            <label>Yes</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="false"></div>
+                                                            <label>No</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.stairsToFront, new { @class = "required type-radio required reveal", @Value = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Please list the number of steps at either location</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.stairsToFrontExp, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*long walks*@
+                                        <div class='slide'>
+                                            <div class="question">
+                                                <p class="heading">Are there any long walks from the street to your front door or within your apartment building at either your current or destination locations?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="true"></div>
+                                                            <label>Yes</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="false"></div>
+                                                            <label>No</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.longWalksToDoor, new { @class = "required type-radio required reveal", @Value = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Please provide a description</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.longWalksToDoorExp, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*current location bedrooms*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">How many bedrooms at your current location?</p>
+                                                <div class="field">
+                                                    @*<div class="input select">
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>Select</span></a>
+                                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                    <li><a tabindex="-1" href="#">0 (Studio)</a></li>
+                                                                    <li><a tabindex="-1" href="#">1</a></li>
+                                                                    <li><a tabindex="-1" href="#">2</a></li>
+                                                                    <li><a tabindex="-1" href="#">3</a></li>
+                                                                    <li><a tabindex="-1" href="#">4</a></li>
+                                                                    <li><a tabindex="-1" href="#">5</a></li>
+                                                                    <li><a tabindex="-1" href="#">More than 5</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="input">
+                                                                @Html.HiddenFor(x => x.numRoomsCurrent, new { @class = "required type-dropdown", @Value = "" })
+                                                            </div>
+                                                        </div>*@
+
+                                                    <select autocomplete="off" class="select2 required type-select2 bedrooms dropdown" id="numRoomsCurrent" name="numRoomsCurrent">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*destination bedrooms*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">How many bedrooms at your destination location?</p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 bedrooms dropdown" id="numRoomsDestination" name="numRoomsDestination">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @* invetory*@
+                                        <div class='slide'>
+                                            <div class="question">
+                                                <p class="heading">Inventory List</p>
+                                                <p>So that we can make a more educated estimate for your move, please provide us a detailed description of the items in each room of your dwelling.</p>
+                                                <div class="field add-room">
+                                                    @Html.TextAreaFor(x => x.InventoryWriteIn, new { @class = "mceNoEditor required" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*special care*@
+                                        <div class='slide'>
+                                            <div class="question">
+                                                <p class="heading">Are there any items that require special care?</p>
+                                                <div class="field radio">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio" id="true"></div>
+                                                            <label>Yes</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="false"></div>
+                                                            <label>No</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.specialCareItem, new { @class = "required type-radio required reveal", @Value = "" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener">
+                                                <p class="heading">Please provide a description of the special care items</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.specialCareItemExp, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*box count*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <p class="heading">
+                                                    What do you think your estimated box count is going to be?<br />
+                                                    (Doesn't have to be an exact count, just your gut estimate!)
+                                                </p>
+                                                <div class="field">
+                                                    <select autocomplete="off" class="select2 required type-select2 boxCount dropdown" id="estBoxCount" name="estBoxCount">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*special situations*@
+                                        <div class='slide'>
+                                            <div class="question" id="addLocation">
+                                                <p class="heading">Please describe any special situations, additional stops/pick ups, storage units, drop off, etc. Anything that will help us better understand the scope of your move.</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.moveDescription, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*feedback*@
+                                        <div class='slide'>
+                                            <div class="question" id="feedback">
+                                                <p class="heading">(optional) Let us know your thoughts about this form, the website, or service. We appreciate any and all feedback!</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.Feedback, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*big checkbox name phone email*@
+                                        <div class="slide">
+                                            <div class="question">
+                                                <div class="field">
+                                                    <p class="heading bigCheckbox">I agree that all the information I have provided has been reviewed for accuracy and is correct.</p>
+                                                    <div class="input big cbox"></div>
+                                                    @Html.HiddenFor(x => x.agreeCorrect, new { @class = "required type-checkbox agree required gaCb", @Value = "" })
+                                                </div>
+
+                                                <p>Please also provide us your name, email and phone number, we will get back to you with an estimate in 24 hours (excluding weekends, will get back to you on Monday). Old City Movers office hours 8am - 4pm Monday thru Friday. You'll recieve a copy of this form to your email for your records.</p>
+                                                <div class="field">
+                                                    <label>Name</label>
+                                                    @Html.TextBoxFor(x => x.name, new { @class = "medium required", autocomplete = "off" })
+                                                </div>
+                                                <div class="field">
+                                                    <label>Email</label>
+                                                    @Html.TextBoxFor(x => x.email, new { @class = "medium required email", autocomplete = "off" })
+                                                </div>
+                                                <div class="field">
+                                                    <label>Phone (10 digits numbers only!)</label>
+                                                    @Html.TextBoxFor(x => x.phone, new { @class = "medium required", maxlength = 10, autocomplete = "off" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        @*submit*@
+                                        <div class='slide'>
+                                            <div class="field navigation formSubmit">
+                                                <input type="submit" value="Submit for Estimate" class="btn btn-primary">
+                                            </div>
+                                            <div class="errorList">
+                                                OOPS! There are <span class="errorCount errorNote"></span> errors in your form.<br />
+                                                Please correct the <span class="errorNote">RED</span> input items above.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Please confirm your inventory</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for contacting Old City Movers!</p>
+                    <p>We would be happy to provide you with our hourly rates and an estimate. If you could please double-check that you’ve answered YES! to the following questions:</p>
+                    <ul>
+                        <li>Do you feel your estimated box count is correct?</li>
+                        <li>Did you provide a detailed listing of all of the furniture by room?</li>
+                    </ul>
+                    <p>Please understand that we are only asking for such specific information so that we may provide you with an accurate estimate, which will prevent delays in booking your job, and additional costs required to complete your move.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>
+                    <button type="button" class="btn btn-primary submit btn">All looks good, SUBMIT my estimate!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Oops!  There were some errors in your submission:</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="errorText"></p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default cancel" data-dismiss="modal">I need to complete more information.</button>*@
+                    <button type="button" class="btn btn-primary btn" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @if (WebSecurity.IsAuthenticated)
+    {
+        {
+            <script>
+                $(document).ready(function () {
+
+
+                    var easterEgg = 'egg';
+                    var eggLength = easterEgg.length;
+                    var keyHistory = '';
+                    var match;
+
+                    $(document).keypress(function (e) {
+                        keyHistory += String.fromCharCode(e.which)
+                        match = keyHistory.match(easterEgg);
+                        if (match) {
+                            //alert(match);
+
+                            $('input[name="moveDateStart"]').val("9/1/2014");
+                            $('input[name="moveDateEnd"]').val("9/1/2014");
+                            $('textarea[name="moveDescription"]').val("Move Description");
+
+                            $('input[name="loc1BuildingName"]').val("Building Name 1");
+                            $('input[name="loc1Address1"]').val("450 Sherwood Drive");
+                            $('input[name="loc1Address2"]').val("Current Address 2");
+                            $('input[name="loc1Apartment"]').val("206");
+                            $('input[name="loc1City"]').val("Sausalito");
+                            $("#loc1State").val('California').trigger("change");
+                            $('input[name="loc1Postal"]').val("19125");
+
+                            $('input[name="loc2BuildingName"]').val("Building Name 2");
+                            $('input[name="loc2Address1"]').val("155 Summit Drive");
+                            $('input[name="loc2Address2"]').val("Dest Address2");
+                            $('input[name="loc2Apartment"]').val("Destination Apt Name");
+                            $('input[name="loc2City"]').val("Corte Madera");
+                            $('select[name="loc2State"]').select2('val', 'California');
+                            $("#loc2State").val('California').trigger("change");
+                            $('input[name="loc2Postal"]').val("94965");
+
+                            $('.rdio').each(function () {
+                                $(this).addClass('active');
+                                var thisVal = $(this).attr('id');
+                                var thisInput = $(this).closest('.radio-group').find('input:hidden');
+                                $(thisInput).val(thisVal);
+                            });
+                            $('.slide').each(function () { $(this).find('.question.hiddener').show(); });
+
+                            $('.dropdown.select2').each(function () {
+
+                                var id = $(this).attr('id');
+                                var value = $("#" + id + " option:nth-child(2)").val();
+                                $("#" + id).val(value).trigger("change");
+
+                            });
+
+
+
+                            $('textarea').each(function () {
+                                var thisTitle = $(this).closest('.slide').find('.question:first-child p').text();
+                                $(this).val('Sample text - ' + thisTitle);
+                            });
+
+                            $('#dwellingTypeCurrent').val('House');
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).show();
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).find('.dropdown-toggle span').text('1-2 Stories');
+
+                            $('#dwellingTypeDestination').val('House');
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).show();
+                            $('#House').closest('.slide').find('.hiddener2').eq(0).find('.dropdown-toggle span').text('1-2 Stories');
+
+                            $('#numRoomsCurrent').val(2);
+                            $('#numRoomsCurrent').closest('.input').find('.dropdown-toggle span').text('2');
+
+                            $('input[name="ccNumber"]').parent('td').append('<input type="hidden" name="testmode" id="testmode" value="true" />');
+
+                            $('input[name="name"]').val('Eric Harms');
+
+                            $('input[name="email"]').val('eric.harms@gmail.com');
+                            $('input[name="phone"]').val('2679804251');
+
+                            $('#PreviousCustomerName').val($('#name').val() + ' ' + $('#email').val());
+
+                            $('.input.big.cbox').addClass('active');
+                            $('#packingServices').val(true);
+                            $('#agreeCorrect').val(true);
+
+
+                            keyHistory = match = '';
+                        } else if (keyHistory.length > 30) {
+                            keyHistory = keyHistory.substr((keyHistory.length - eggLength - 1));
+                        }
+                    });
+
+
+                });
+
+            </script>
+        }
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('select.state').select2({
+                data: states,
+                maximumSelectionLength: 2
+            });
+
+            $('select.stories-house').select2({
+                data: houseStories,
+                maximumSelectionLength: 2,
+                dropdownAutoWidth: true,
+                width: 'auto',
+                placeholder: 'Select your house stories'
+            });
+
+            $('select.floor-apt').select2({
+                data: currentFloorApt,
+                maximumSelectionLength: 2,
+                dropdownAutoWidth: true,
+                width: 'auto',
+                placeholder: 'Select your apartment floor number'
+            });
+
+            $('select.bedrooms').select2({
+                data: bedrooms,
+                maximumSelectionLength: 2,
+                dropdownAutoWidth: true,
+                width: 'auto',
+                placeholder: 'Select number of rooms'
+            });
+
+            $('select.boxCount').select2({
+                data: boxCount,
+                maximumSelectionLength: 2,
+                dropdownAutoWidth: true,
+                width: 'auto',
+                placeholder: 'Select your box count'
+            });
+
+            $("select").on("select2:close", function (e) {
+                $(this).valid();
+            });
+
+            jQuery.fn.ForceNumericOnly =
+                function () {
+                    return this.each(function () {
+                        $(this).keydown(function (e) {
+                            var key = e.charCode || e.keyCode || 0;
+                            // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                            // home, end, period, and numpad decimal
+                            return (
+                                key == 8 ||
+                                    key == 46 ||
+                                    (key >= 35 && key <= 40) ||
+                                    (key >= 48 && key <= 57) ||
+                                    (key >= 96 && key <= 105));
+                        });
+                    });
+                }
+
+            $("#phone").ForceNumericOnly();
+
+            $('form').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: "/Estimate/SendEstimate",
+                        type: "POST",
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            if (!result.result == "success") {
+                                $('#errorText').html(result.result);
+                                $('#errorModal').modal('show');
+                            } else {
+                                window.location.replace("/Estimate/Thanks");
+                            }
+
+                        }
+                    });
+                }
+                return false;
+            });
+        })
+    </script>
+
+}
+
+
+
+
+

@@ -1,0 +1,312 @@
+﻿@model OCMovers_MC4.Models.EstimateForm
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>EstimateForm</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.submitDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.submitDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.moveDateStart)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.moveDateStart)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.moveDateEnd)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.moveDateEnd)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EstimateGuid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstimateGuid)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.moveDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.moveDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeCurrent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeCurrent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeCurrentFloorApt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeCurrentFloorApt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeCurrentFloorHouse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeCurrentFloorHouse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeDestination)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeDestination)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeDestinationFloorApt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeDestinationFloorApt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.dwellingTypeDestinationFloorHouse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dwellingTypeDestinationFloorHouse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.numRoomsCurrent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.numRoomsCurrent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.numRoomsDestination)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.numRoomsDestination)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1BuildingName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1BuildingName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1Address1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1Address1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1Address2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1Address2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1Apartment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1Apartment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1State)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1State)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc1Postal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc1Postal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2BuildingName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2BuildingName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2Address1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2Address1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2Address2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2Address2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2Apartment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2Apartment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2State)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2State)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loc2Postal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loc2Postal)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.elevStairs)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.elevStairs)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.elevStairsExp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.elevStairsExp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.elevStairsRes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.elevStairsRes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.elevStairsResExp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.elevStairsResExp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.stairsToFront)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stairsToFront)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.stairsToFrontExp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stairsToFrontExp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.longWalksToDoor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.longWalksToDoor)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.longWalksToDoorExp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.longWalksToDoorExp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.specialCareItem)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.specialCareItem)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.specialCareItemExp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.specialCareItemExp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.estBoxCount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estBoxCount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.agreeCorrect)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.agreeCorrect)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

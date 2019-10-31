@@ -1,0 +1,413 @@
+@*@model OCMovers_MVC4.Models.Model1Container;
+*@
+@{
+    ViewBag.Title = "Old City Movers :: Get an Estimate!";
+    Layout = "~/Views/Shared/_LayoutInterior.cshtml";
+    
+    
+}
+
+
+<div class="estimate page-group">
+    <h1 class="interior">OLD CITY MOVERS ESTIMATE</h1>
+    <div class="content">
+        <div class="estimate-wrapper">
+            <form name="estimate">
+                <div class="container">
+                    <div id="slides">
+                        @*<div class="menu">
+                            <ul class="menu-ul">
+                                <li class="start link"><a href="#0"><span class="a complete">Start Here</span></a></li>
+                                <li><a href="#1" class="link estimate-nav-item" data-toggle="tooltip" title="House or Apartment?"><span class="a">Step 1</span></a></li>
+                                <li><a href="#2" class="link estimate-nav-item" data-toggle="tooltip" title="How Many Bedrooms?"><span class="a">Step 2</span></a></li>
+                                <li><a href="#3" class="link estimate-nav-item" data-toggle="tooltip" title="Start / End Addresses"><span class="a">Step 3</span></a></li>
+                                <li><a href="#4" class="link estimate-nav-item" data-toggle="tooltip" title="Elevators or Stairs?"><span class="a">Step 4</span></a></li>
+                                <li><a href="#5" class="link estimate-nav-item" data-toggle="tooltip" title="Stairs at the Front door?"><span class="a">Step 5</span></a></li>
+                                <li><a href="#6" class="link estimate-nav-item" data-toggle="tooltip" title="Long Walks to Your Door?"><span class="a">Step 6</span></a></li>
+                                <li><a href="#7" class="link estimate-nav-item" data-toggle="tooltip" title="Inventory!"><span class="a">Step 7</span></a></li>
+                                <li><a href="#8" class="link estimate-nav-item" data-toggle="tooltip" title="Special Care Items"><span class="a">Step 8</span></a></li>
+                                <li class="review"><a href="#9" class="link estimate-nav-item" data-toggle="tooltip" title="Review and Finalize"><span class="a">Review and Finalize</span></a></li>
+                            </ul>
+                        </div>*@
+                        <form>
+                            <div class="slides_container">
+
+                                @*start*@
+                                <div class="slide">
+                                    <p class="heading">Before you start your estimate, please be aware of a couple things:</p>
+                                    <ol>
+                                        <li>The more information you can tell us, the better we can prepare your estimate</li>
+                                        <li>After submitting your estimate, we usually get back to you via phone or email within 24 hours with a price</li>
+                                        <li>We'll help you tell us what kinds of things you have in your dwelling, which will help us estimate how many movers you need, and the truck size</li>
+                                        <li>Why don't we display our prices?  <a href="#">See this</a></li>
+                                    </ol>
+                                    <p>The estimate form will take about 10 minutes to complete.</p>
+                                    <div class="field navigation">
+                                        <a href="#2" class="btn link next">Let's start your estimate!<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 1*@
+                                <div class="slide">
+                                    <div class="question">
+                                        <p class="heading">Is this a house or apartment?</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="house"></div>
+                                                    <label>House</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Apartment"></div>
+                                                    <label>Apartment</label>
+                                                </div>
+                                                <input type="hidden" name="dwellingType" id="dwellingType" value="" class="required type-radio">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#3" class="btn link">Step 2<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 2 *@
+                                <div class="slide">
+                                    <div class="question">
+                                        <p class="heading">How many bedrooms at your present location?</p>
+                                        <div class="field">
+                                            <div class="input select">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>Select</span></a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <li><a tabindex="-1" href="#">0 (Studio)</a></li>
+                                                        <li><a tabindex="-1" href="#">1</a></li>
+                                                        <li><a tabindex="-1" href="#">2</a></li>
+                                                        <li><a tabindex="-1" href="#">3</a></li>
+                                                        <li><a tabindex="-1" href="#">4</a></li>
+                                                        <li><a tabindex="-1" href="#">5</a></li>
+                                                        <li><a tabindex="-1" href="#">More than 5</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="input">
+                                                    <input type="hidden" value="" name="q1b" id="q1b" class="required type-dropdown">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input">
+                                        <input type="hidden" value="" name="q1b" id="q1b" class="required type-dropdown">
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#4" class="btn link next">Step 3<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                <div class="slide">
+                                    <div class="question">
+                                        <p class="heading">Please provide the start and end addresses (include apartment numbers and names of buildings if applicable)</p>
+                                        <div class="left">
+                                            <div class="startingfrom">~Your current location ~</div>
+                                            <div class="field text">
+                                                <label>Building Name</label>
+                                                <input type="text" name="loc1buildingName" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Address 1</label>
+                                                <input type="text" name="loc1address1" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Address 2</label>
+                                                <input type="text" name="loc1address2" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Apartment Name or Number</label>
+                                                <input type="text" name="loc1apartment" />
+                                            </div>
+                                            <div class="field">
+                                                <label>City</label>
+                                                <input type="text" name="loc1city" />
+                                            </div>
+                                            <div class="field horizontal">
+                                                <div class="input select">
+                                                    <label>State</label>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>Select</span></a>
+                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                            @Html.Partial("StateSelect")
+                                                        </ul>
+                                                    </div>
+                                                    <div class="input">
+                                                        <input type="hidden" value="" name="loc1state" class="required type-dropdown">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field horizontal">
+                                                <label>Postal Code</label>
+                                                <input type="text" name="loc1postal" class="short" />
+                                            </div>
+                                        </div>
+                                        <div class="middle"></div>
+                                        <div class="right">
+                                            <div class="startingfrom">~Your destination ~</div>
+                                            <div class="field text">
+                                                <label>Building Name</label>
+                                                <input type="text" class="" value="" name="loc2buildingName" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Address 1</label>
+                                                <input type="text" name="loc2address1" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Address 2</label>
+                                                <input type="text" name="loc2address2" />
+                                            </div>
+                                            <div class="field">
+                                                <label>Apartment Name or Number</label>
+                                                <input type="text" name="loc2apartment" />
+                                            </div>
+                                            <div class="field">
+                                                <label>City</label>
+                                                <input type="text" name="loc2city" />
+                                            </div>
+                                            <div class="field horizontal">
+                                                <div class="input select">
+                                                    <label>State</label>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>Select</span></a>
+                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                            @Html.Partial("StateSelect")
+                                                        </ul>
+                                                    </div>
+                                                    <div class="input">
+                                                        <input type="hidden" value="" name="loc2state" class="required type-dropdown">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="field horizontal">
+                                                <label>Postal Code</label>
+                                                <input type="text" name="loc2postal" class="short" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="field navigation">
+                                        <a href="#5" class="btn link next">Step 4<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 3*@
+                                <div class='slide'>
+                                    <div class="question">
+                                        <p class="heading">Do you have elevators or stairs at either your present or destination location?</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Yes"></div>
+                                                    <label>Yes</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="No"></div>
+                                                    <label>No</label>
+                                                </div>
+                                                <input type="hidden" name="q1" value="" class="required type-radio reveal">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="question hiddener">
+                                        <p class="heading">Are there any time restrictions on elevator or stair usage at either location</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Yes"></div>
+                                                    <label>Yes</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="No"></div>
+                                                    <label>No</label>
+                                                </div>
+                                                <input type="hidden" name="q1" value="" class="required type-radio reveal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question hiddener">
+                                        <p class="heading">Please describe the restrictions at either location</p>
+                                        <div class="field">
+                                            <textarea name="locationRestrictions"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#6" class="btn link next">Step 5<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 4*@
+                                <div class='slide'>
+                                    <div class="question">
+                                        <p class="heading">Are there stairs leading up to your front door from the street?</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Yes"></div>
+                                                    <label>Yes</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="No"></div>
+                                                    <label>No</label>
+                                                </div>
+                                                <input type="hidden" name="q1" value="" class="required type-radio reveal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question hiddener">
+                                        <p class="heading">Please list the number of steps at either location</p>
+                                        <div class="field">
+                                            <textarea name="locationRestrictions"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#7" class="btn link next">Step 6<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 5*@
+                               <div class='slide'>
+                                    <div class="question">
+                                        <p class="heading">Are there any long walks from the street to your front door or within your apartment building?</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Yes"></div>
+                                                    <label>Yes</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="No"></div>
+                                                    <label>No</label>
+                                                </div>
+                                                <input type="hidden" name="q1" value="" class="required type-radio reveal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question hiddener">
+                                        <p class="heading">Please provide a description</p>
+                                        <div class="field">
+                                            <textarea name="locationRestrictions"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#8" class="btn link next">Step 7<span class="caret"></span></a>
+                                    </div>
+                                </div>
+
+                                @*slide 6*@
+                                <div class='slide'>
+                                    <div class="question">
+                                        <p class="heading">Inventory List</p>
+                                        <p>So that we can make a more educated estimate for your move, please provide us a detailed description of the items in each room of your dwelling.</p>
+                                        <div class="inventory">
+                                            @*<div class="room">
+                                                <span class="ui-icon ui-icon-circle-close removeRoom"></span><div class="roomTitle">Kitchen</div>
+                                                <div class="roomList">
+                                                    <ul>
+                                                        <li><span class="ui-icon ui-icon-circle-close removeItem"></span>Item 1</li>
+                                                        <li><span class="ui-icon ui-icon-circle-close removeItem"></span>Item 2</li>
+                                                        <li><span class="ui-icon ui-icon-circle-close removeItem"></span>Item 3</li>
+                                                        <li><a href="#" class="addItem">Add inventory item to this room</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>*@
+                                        @*<div class="custom-entry">
+                                            <span class="ui-icon ui-icon-circle-close removeItem"></span>
+                                            <p>Custom Item Name</p>
+                                            <input type="text" class="short" />
+                                            <a href="#" class="addCustom">Add Custom Item to List</a>
+                                        </div>*@
+                                        </div>
+                                        <div class="field add-room">
+                                            <div class="input select">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>Add a Room</span></a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <li><a tabindex="-1" href="#">Living Room</a></li>
+                                                        <li><a tabindex="-1" href="#">Dining Room</a></li>
+                                                        <li><a tabindex="-1" href="#">Bedroom</a></li>
+                                                        <li><a tabindex="-1" href="#">Home Office</a></li>
+                                                        <li><a tabindex="-1" href="#">Basement</a></li>
+                                                        <li><a tabindex="-1" href="#">Garage</a></li>
+                                                        <li><a tabindex="-1" href="#">Kitchen</a></li>
+                                                        <li><a tabindex="-1" href="#">Sunroom</a></li>
+                                                        <li><a tabindex="-1" href="#">Laundry Room</a></li>
+                                                        <li><a tabindex="-1" href="#">Bathroom</a></li>
+                                                        <li><a tabindex="-1" href="#">Gameroom</a></li>
+                                                        <li><a tabindex="-1" href="#">Other</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="input">
+                                                    <input type="hidden" value="" name="q1b" id="q1b" class="required type-dropdown">
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="field navigation">
+                                             <a href="#9" class="btn link next">Step 8<span class="caret"></span></a>
+                                         </div>
+                                     </div>
+                                </div>
+
+                                @*slide 7*@
+                                <div class='slide'>
+                                     <div class="question">
+                                        <p class="heading">Are there any items that require special care?</p>
+                                        <div class="field radio">
+                                            <div class="radio-group">
+                                                <div class="input radio">
+                                                    <div class="rbox" id="Yes"></div>
+                                                    <label>Yes</label>
+                                                </div>
+                                                <div class="input radio">
+                                                    <div class="rbox" id="No"></div>
+                                                    <label>No</label>
+                                                </div>
+                                                <input type="hidden" name="q1" value="" class="required type-radio reveal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question hiddener">
+                                        <p class="heading">Please provide a description of the special care items</p>
+                                        <div class="field">
+                                            <textarea name="locationRestrictions"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field navigation">
+                                        <a href="#10" class="btn link next">Review and Submit<span class="caret"></span></a>
+                                    </div>
+                                </div>      
+
+                                <div class="slide">
+                                    <div class="question">
+                                        <p class="heading">Please review the following information for correctness.</p>
+                                        <p>Please also provide us either your email or phone number, we will get back to you with an estimate in 24 hours.</p>
+                                        <div class="field">
+                                            <label>Email</label>
+                                            <input type="text" name="email" class="medium"/>
+                                        </div>
+                                        <div class="field">
+                                            <label>Phone</label>
+                                            <input type="text" name="phone" class="medium" />
+                                        </div>
+                                        <div class="field">
+                                            <p>The entered data will appear here for review</p>
+                                        </div>
+                                        <div class="field navigation">
+                                            <a href="#10" class="btn link next">Submit for Estimate<span class="caret"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

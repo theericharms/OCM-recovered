@@ -1,0 +1,134 @@
+﻿@model OCMovers_MC4.Models.Content
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="container">
+    <h1>Contact</h1>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 contact">
+
+            @Html.Raw(@Model.Contact)
+
+            @using (@Html.BeginForm("Index", "Contact", FormMethod.Post, new { name="contactForm" }))
+            {
+                <fieldset>
+                    <div class="form-group field">
+                        @Html.Label("NAME")
+                        @Html.TextBox("Name", null, new {@class = "required"})
+                    </div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        @Html.Label("TOPIC")
+                        <select name="topic" class="required topic select" style="padding: 5px;">
+                            <option value="">Select a topic</option>
+                            <option value="Get an Estimate">Get an Estimate</option>
+                            <option value="General Information">General Information</option>
+                            <option value="Confirmed move date question">Question about your CONFIRMED move date</option>
+                            <option value="Completed move date question">Question about your COMPLETED move</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("EMAIL")
+                        @Html.TextBox("Email", null, new {@class = "required"})
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("SUBJECT")
+                        @Html.TextBox("Subject", null, new {@class = "required"})
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("COMMENTS")
+                        @Html.TextArea("Comments", null, new {@class = "required mceNoEditor"})
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </fieldset>
+            }
+
+        </div>
+        @Html.Partial("_right-col")
+    </div>
+
+    <div id="cta"></div>
+</main>
+
+
+<div class="modal" id="estimateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>In order for us to provide you an estimate, we need you to please complete our online estimate form. This form was designed to provide us the information we will need to provide you with the most accurate estimate.</p>
+                <p>Questions like "Can you move me on this date?" or "How much will my move cost?" can only be answered if we know the details of your move.</p>
+                <p><a href="/Estimate">Go to the Estimate Form</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('form[name="contactForm"] input[type="submit"]').on('click', function (e) {
+                e.preventDefault();
+                
+                $.blockUI({
+                    message: '<h1><img src="/Content/themes/base/images/spinner.gif" /> Just a moment...</h1>',
+                    baseZ: 5000,
+                    css: {
+                        color: '#FFF',
+                        border: 'none',
+                        backgroundColor: '#222',
+                        padding: '20px',
+                        width: '35%',
+                        left: '30%'
+                    },
+                    overlayCSS: {
+                        backgroundColor: '#FFF',
+                        opacity: 0.6,
+                        cursor: 'wait'
+                    }
+                });
+
+            });
+
+            $('form[name="contactForm"]').validate({
+                ignore: [],
+                highlight: function (element, error) {
+
+                    // textbox, textarea
+                    $(element).addClass('error');
+                },
+                unhighlight: function (element, error) {
+                    // textbox, textarea
+                    $(element).removeClass('error');
+                },
+                submitHandler: function (form) {
+                    if ($("select[name='topic'] option:selected").index() == 1) {
+                        $('#estimateModal').modal('show');
+                        return false;
+                    } else {
+                        form.submit();
+                    }
+                }
+            });
+
+            $('html').on('change', '.topic', checkForm);
+
+        });
+
+        function checkForm() {
+            if ($("select[name='topic'] option:selected").index() == 1) {
+                $('#estimateModal').modal('show');
+            }
+        }
+
+       
+    </script>
+}

@@ -1,0 +1,106 @@
+﻿// Basics of a navbar
+@navbar-height:                    70px;
+@navbar-margin-bottom:             @line-height-computed;
+@navbar-border-radius:             @border-radius-base;
+@navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
+@navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
+@navbar-collapse-max-height:       340px;
+
+// #392A1A;
+@navbar-default-color:             #777;
+@navbar-default-bg:                #392A1A;
+@navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+
+// Navbar links
+@navbar-default-link-color:                #cccccc;
+@navbar-default-link-hover-color:          #aaaaaa;
+@navbar-default-link-hover-bg:             transparent;
+@navbar-default-link-active-color:         #aaaaaa;
+@navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-disabled-color:       #ccc;
+@navbar-default-link-disabled-bg:          transparent;
+
+// Navbar toggle
+@navbar-default-toggle-hover-bg:           transparent;
+@navbar-default-toggle-icon-bar-bg:        white;
+@navbar-default-toggle-border-color:       transparent;
+
+.navbar {
+  border-top: 4px solid @brand-primary;
+  border-radius: 0;
+  margin-bottom: 30px;
+  li {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.navbar-brand {
+  padding: 0px;
+  margin-right: 10px;
+}
+
+.navbar-brand > img {
+  height: 100%;
+  padding: 7px 5px;
+  margin-left: 16px;
+  width: auto;
+}
+
+.navbar-testimonials {
+  margin-right: 16px;
+  float: right;
+
+  h3 {
+    color: @navbar-default-link-color;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-top: 14px;
+    margin-bottom: 2px;
+  }
+
+  li {
+    text-transform: uppercase;
+    font-weight: bold;
+    img {
+      width: 30px;
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    float: none;
+  }
+}
+
+.navbar-toggle {
+  .icon-bar {
+    transition: 250ms;
+    will-change: transform;
+  }
+}
+
+.navbar-toggle:not(.collapsed) {
+  .icon-bar-top {
+    opacity: 0;
+
+  }
+
+  .icon-bar-middle {
+    position: relative;
+    top: 6px;
+    margin: 0;
+    transform: rotate(45deg);
+  }
+
+  .icon-bar-bottom {
+
+    transform: rotate(-45deg);
+  }
+}
+
+.navbar-cta {
+  padding: 16px 0;
+  @media (max-width: @screen-sm) {
+    float: none !important; // overrides bootstrap important....
+  }
+}

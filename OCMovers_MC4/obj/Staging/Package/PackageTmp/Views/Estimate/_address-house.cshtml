@@ -1,0 +1,146 @@
+﻿@model OCMovers_MC4.ViewModel.Address
+    <div class="field form-group question-group">
+        <div class="question">
+            <div class="sectionLine"></div>
+            <p class="heading">How many stories is the house?</p>
+            <div class="field dropdown-field">
+                <select autocomplete="off" class="select2 required type-select2 stories-house dropdown" id="HouseStories" name="HouseStories">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        
+    </div>
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">Are there stairs leading up to the front door from the street?</p>
+            <div class="field radio">
+                <div class="radio-group">
+                    <div class="input radio">
+                        <div class="rbox rdio address hasHidden" id="true"></div>
+                        <label>Yes</label>
+                    </div>
+                    <div class="input radio">
+                        <div class="rbox address" id="false"></div>
+                        <label>No</label>
+                    </div>
+                    @Html.HiddenFor(x => x.Stairs, new { @class = "required type-radio required reveal", @Value = "" })
+                </div>
+            </div>
+        </div>
+        <div class="question hiddener">
+            <p class="heading">Please list the number of steps</p>
+            <div class="field">
+                @Html.TextAreaFor(x => x.StairsDescription, new { @class = "mceNoEditor" })
+            </div>
+        </div>
+    </div>
+
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">Are there any long walks from the street to the front door?</p>
+            <div class="field radio">
+                <div class="radio-group">
+                    <div class="input radio">
+                        <div class="rbox rdio address hasHidden" id="true"></div>
+                        <label>Yes</label>
+                    </div>
+                    <div class="input radio">
+                        <div class="rbox address" id="false"></div>
+                        <label>No</label>
+                    </div>
+                    @Html.HiddenFor(x => x.LongWalks, new { @class = "required type-radio required reveal", @Value = "" })
+                </div>
+            </div>
+        </div>
+        <div class="question hiddener">
+            <p class="heading">Please provide a description</p>
+            <div class="field">
+                @Html.TextAreaFor(x => x.LongWalksDescription, new { @class = "mceNoEditor" })
+            </div>
+        </div>
+    </div>
+
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">How many bedrooms?</p>
+            <div class="field dropdown-field">
+                <select autocomplete="off" class="select2 required type-select2 bedrooms dropdown" id="NumberOfBedrooms" name="NumberOfBedrooms">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field form-group question-group" id="qi-inventory">
+    <div class="sectionLine"></div>
+    <div class="question">
+        <p class="heading"></p>
+        <p>So that we can make a more educated estimate for your move, please provide us a detailed description of the items in each room at this location.</p>
+        <div class="field add-room">
+            @Html.TextAreaFor(x => x.Inventory, new { @class = "mceNoEditor required" })
+        </div>
+    </div>
+</div>
+
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">Are there any items that require special care?</p>
+            <div class="field radio">
+                <div class="radio-group">
+                    <div class="input radio">
+                        <div class="rbox rdio address hasHidden" id="true"></div>
+                        <label>Yes</label>
+                    </div>
+                    <div class="input radio address">
+                        <div class="rbox address" id="false"></div>
+                        <label>No</label>
+                    </div>
+                    @Html.HiddenFor(x => x.SpecialCare, new { @class = "required type-radio required reveal", @Value = "" })
+                </div>
+            </div>
+        </div>
+        <div class="question hiddener">
+            <p class="heading">Please provide a description of the special care items</p>
+            <div class="field">
+                @Html.TextAreaFor(x => x.SpecialCareDescription, new { @class = "mceNoEditor" })
+            </div>
+        </div>
+    </div>
+
+    @*box count*@
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">
+                What do you think your estimated box count is going to be?<br />
+                (Doesn't have to be an exact count, just your gut estimate!)
+            </p>
+            <div class="field">
+                <select autocomplete="off" class="select2 required type-select2 boxCount dropdown" id="BoxCount" name="BoxCount">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field form-group question-group">
+        <div class="sectionLine"></div>
+        <div class="question">
+            <p class="heading">Location Notes</p>
+            <p>Any special notes about this location?</p>
+            <div class="field add-room">
+                @Html.TextAreaFor(x => x.Notes, new { @class = "mceNoEditor required" })
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("~/Views/Estimate/_submit.cshtml")
+
+    @Html.HiddenFor(x=>x.ElevatorStairs, false)
+
+

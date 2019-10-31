@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Old City Movers | A Philadelphia, PA insured & bonded moving company</title>
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="viewport" content="width=device-width">
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    @*<link rel="stylesheet" href="/Content/normalize.min.css">*@
+    @Styles.Render("~/bundles/css")
+
+    <link rel="shortcut icon" href="/Content/themes/base/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Content/themes/base/images/favicon.ico" type="image/x-icon">
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div id="main-wrapper">
+        <div class="header">
+            <div class="nav-wrapper">
+                <div class="main-nav">
+                    <ul>
+                        <li class="logo-interior"><a href="/">
+                            <img src="/Content/themes/base/images/icon-headerLogo.png" /></a></li>
+                        <li><a href="@Url.RouteUrl("EstimateForm")" title="START AN ESTIMATE WITH OLD CITY MOVERS" class="about">START AN ESTIMATE</a></li>
+                        <li class="bar"></li>
+						<li class=""><a href="@Url.RouteUrl("About")" title="ABOUT OLD CITY MOVERS">ABOUT</a></li>
+							<li class="bar"></li>
+                        <li><a href="@Url.RouteUrl("Services")" title="OLD CITY MOVERS SERVICES">SERVICES</a></li>
+                        <li class="bar"></li>
+                        <li><a href="@Url.RouteUrl("Contact")" title="CONTACT OLD CITY MOVERS">CONTACT US</a></li>
+                        <li class="bar"></li>
+                        <li><a href="@Url.RouteUrl("FAQ")" title="OLD CITY MOVERS FREQUENTLY ASKED QUESTIONS">FAQS</a></li>
+                    </ul>
+                </div>
+                <div class="sub-nav">
+                    <ul>
+                        
+                        <li class="title">TESTIMONIALS</li>
+                        <li id="angies">
+                            
+                            <a href="http://www.angieslist.com/companylist/us/pa/philadelphia/old-city-movers-reviews-434879.aspx" title="Angie's List Super Service Award winner"><img src="/Content/themes/base/images/ssaward_50.png"/></a>
+                        </li>
+                        <li><a href="http://philadelphia.citysearch.com/profile/44656396/philadelphia_pa/old_city_movers.html" target="_blank" title="OLD CITY MOVERS REVIEWS ON CITYSEARCH">CITYSEARCH</a></li>
+                        <li><a href="http://www.yelp.com/biz/old-city-movers-philadelphia" target="_blank" title="OLD CITY MOVERS REVIEWS ON YELP">YELP</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="body">
+
+            <div id="spinner">
+                <img src="/Content/themes/base/images/ajax-loader.gif" />
+                <div class="bg"></div>
+            </div>
+
+            @RenderBody()
+        </div>
+        <div class="footer"></div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.1.1.min.js"><\/script>')</script>
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            width: 500,
+            plugins: ["code fullscreen"],
+            selector: "textarea:not(.mceNoEditor)"
+        });
+
+    </script>
+
+    @Scripts.Render("~/bundles/main")
+
+    @RenderSection("scripts", required: false)
+
+    @*<script src="/Scripts/main.js"></script>*@
+
+    <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-62568807-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

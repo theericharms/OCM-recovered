@@ -1,0 +1,41 @@
+﻿@model IEnumerable<OCMovers_MC4.Models.UserProfile>
+
+@{
+    Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="admin">
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+        </tr>
+
+    @foreach (var item in Model) {
+        if (item.UserName != "fmeenz")
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("View", "Edit", new {id = item.UserId}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.UserId})
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+            </tr>
+        }
+    }
+
+    </table>
+    
+</div>

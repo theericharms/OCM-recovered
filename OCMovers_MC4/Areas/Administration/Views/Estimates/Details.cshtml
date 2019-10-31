@@ -1,0 +1,199 @@
+﻿@model OCMovers_MC4.Models.EstimateForm
+
+@{
+    ViewBag.Title = "Details";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+
+	DateTime movestart = Model.moveDateStart;
+	DateTime moveend = Model.moveDateEnd;
+
+	string cFloorHouse = Model.dwellingTypeCurrentFloorHouse;
+	string dFloorHouse = Model.dwellingTypeDestinationFloorHouse;
+				
+}
+
+<div class="admin">
+
+	<h2>Estimate Submission Details</h2>
+
+	<fieldset>
+
+		<table>
+			
+			<tr>
+				<td style="width: 190px;">@Html.LabelFor(model => model.moveDescription)</td>
+				<td>@Html.DisplayFor(model => model.moveDescription)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.moveDateStart)</td>
+				<td>@String.Format("{0:dddd, MMMM d, yyyy}", @movestart)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.moveDateEnd)</td>
+				<td>@String.Format("{0:dddd, MMMM d, yyyy}", @moveend)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.dwellingTypeCurrent)</td>
+				<td>@Html.DisplayFor(model => model.dwellingTypeCurrent)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.dwellingTypeDestination)</td>
+				<td>@Html.DisplayFor(model => model.dwellingTypeDestination)</td>
+			</tr>
+
+			
+			@{
+				if (cFloorHouse == null)
+				{
+					<tr>
+						<td>@Html.LabelFor(model => model.dwellingTypeCurrentFloorApt)</td>
+						<td>@Html.DisplayFor(model => model.dwellingTypeCurrentFloorApt)</td>
+					</tr>
+				}
+				else
+				{
+					<tr>
+						<td>@Html.LabelFor(model => model.dwellingTypeCurrentFloorHouse)</td>
+						<td>@Html.DisplayFor(model => model.dwellingTypeCurrentFloorHouse)</td>
+					</tr>
+				}
+			}
+
+	
+			@{
+				if (dFloorHouse == null)
+				{
+					<tr>
+						<td>@Html.LabelFor(model => model.dwellingTypeDestinationFloorApt)</td>
+						<td>@Html.DisplayFor(model => model.dwellingTypeDestinationFloorApt)</td>
+					</tr>
+				}
+				else
+				{
+					<tr>
+						<td>@Html.LabelFor(model => model.dwellingTypeDestinationFloorHouse)</td>
+						<td>@Html.DisplayFor(model => model.dwellingTypeDestinationFloorHouse)</td>
+					</tr>
+				}
+			}
+
+			
+
+			<tr>
+				<td>@Html.LabelFor(model => model.numRoomsCurrent)</td>
+				<td>@Html.DisplayFor(model => model.numRoomsCurrent)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.numRoomsDestination)</td>
+				<td>@Html.DisplayFor(model => model.numRoomsDestination)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1BuildingName)</td>
+				<td>@Html.DisplayFor(model => model.loc1BuildingName)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1Address1)</td>
+				<td>@Html.DisplayFor(model => model.loc1Address1)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1Address2)</td>
+				<td>@Html.DisplayFor(model => model.loc1Address2)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1Apartment)</td>
+				<td>@Html.DisplayFor(model => model.loc1Apartment)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1City)</td>
+				<td>@Html.DisplayFor(model => model.loc1City)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1State)</td>
+				<td>@Html.DisplayFor(model => model.loc1State)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc1Postal)</td>
+				<td>@Html.DisplayFor(model => model.loc1Postal)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2BuildingName)</td>
+				<td>@Html.DisplayFor(model => model.loc2BuildingName)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2Address1)</td>
+				<td>@Html.DisplayFor(model => model.loc2Address1)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2Address2)</td>
+				<td>@Html.DisplayFor(model => model.loc2Address2)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2Apartment)</td>
+				<td>@Html.DisplayFor(model => model.loc2Apartment)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2City)</td>
+				<td>@Html.DisplayFor(model => model.loc2City)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2State)</td>
+				<td>@Html.DisplayFor(model => model.loc2State)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.loc2Postal)</td>
+				<td>@Html.DisplayFor(model => model.loc2Postal)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.elevStairs)</td>
+				<td>@{ if (@Model.elevStairs == false) { <text>No</text> }else{ <text>Yes</text>} }</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.elevStairsExp)</td>
+				<td>@Html.DisplayFor(model => model.elevStairsExp)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.stairsToFront)</td>
+				<td>@{ if (@Model.stairsToFront == false) { <text>No</text> }else{ <text>Yes</text>} }</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.stairsToFrontExp)</td>
+				<td>@Html.DisplayFor(model => model.stairsToFrontExp)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.longWalksToDoor)</td>
+				<td>@{ if (@Model.longWalksToDoor == false) { <text>No</text> }else{ <text>Yes</text>} }</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.longWalksToDoorExp)</td>
+				<td>@Html.DisplayFor(model => model.longWalksToDoorExp)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.specialCareItem)</td>
+				<td>@{ if (@Model.specialCareItem == false) { <text>No</text> }else{ <text>Yes</text>} }</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.specialCareItemExp)</td>
+				<td>@Html.DisplayFor(model => model.specialCareItemExp)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.specialCareItem)</td>
+				<td>@{ if (@Model.specialCareItem == false) { <text>No</text> }else{ <text>Yes</text>} }</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.name)</td>
+				<td>@Html.DisplayFor(model => model.name)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.email)</td>
+				<td>@Html.DisplayFor(model => model.email)</td>
+			</tr>
+			<tr>
+				<td>@Html.LabelFor(model => model.phone)</td>
+				<td>@Html.DisplayFor(model => model.phone)</td>
+			</tr>
+		</table>
+	</fieldset>
+	<p>
+		@Html.ActionLink("Back to List", "Index")
+	</p>
+</div>

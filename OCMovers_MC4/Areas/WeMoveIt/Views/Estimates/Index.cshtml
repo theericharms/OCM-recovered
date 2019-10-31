@@ -1,0 +1,71 @@
+﻿@using System.Activities.Statements
+@using System.Text.RegularExpressions
+@using PagedList.Mvc;
+@using PagedList;
+@using System.Web.WebPages;
+
+@{
+    ViewBag.Title = "Index";
+	Layout = "~/Areas/WeMoveIt/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin">
+
+    <h2>Estimate Submissions</h2>
+    
+    <div class="search-form">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group" style="width: 100%;">
+                <div class="field text" style="margin-bottom: 10px;">
+                    <div style="float: left;"><input type="text" name="dateFrom" id="dateFrom" class="datepicker short" placeholder="Date From" style="height: 24px; margin-right: 10px;"/></div>
+                    <div style="float: left;"><input type="text" name="dateTo" id="dateTo" class="datepicker short" placeholder="Date To" style="height: 24px;"/></div>
+                </div>
+                <input type="text" name="searchTerm" class="form-control" style="margin-right: 10px; height: 24px; width: 200px;" placeholder="Email, Name, Phone"/>
+                
+                <input type="submit" value="Search" class="form-control admin-submit"/>
+                <input type="button" value="Reset" onclick="window.location='@Url.RouteUrl("EstimateSubmissions")'" class="form-control admin-submit" >
+            </div>
+        }
+    </div>
+
+    <table style="width: auto;">
+        <tr>
+            <td></td>
+            <td>Date Submitted</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+        </tr>
+
+        @foreach (var item in ViewBag.OnePageOfProducts)
+        {
+            <tr>
+                <td style="width: 40px;">
+                    <a href="@Url.RouteUrl("EstimateSubmissionDetail", new { id=item.EstimateFormID })">View</a>
+                </td>
+                <td>
+                    @item.submitDate
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    <a href="mailto:@item.email">@item.email</a>
+                </td>
+
+                <td>
+                    @if (item.phone != null)
+                    {
+                        @item.phone
+                    }
+                   
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <span class="pages">Pages:</span> @Html.PagedListPager( (IPagedList)@ViewBag.OnePageOfProducts, page => Url.Action("", new { page }) )
+
+</div>

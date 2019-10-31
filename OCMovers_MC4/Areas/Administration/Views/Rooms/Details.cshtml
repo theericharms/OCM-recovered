@@ -1,0 +1,21 @@
+﻿@model OCMovers_MVC4.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Room</legend>
+
+    <div class="display-label">RoomName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.RoomID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,36 @@
+﻿@model OCMovers_MVC4.Models.Content
+
+@{
+    ViewBag.Title = "Details";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Content</legend>
+
+    <div class="display-label">About</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.About)
+    </div>
+
+    <div class="display-label">Services</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Services)
+    </div>
+
+    <div class="display-label">Contact</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact)
+    </div>
+
+    <div class="display-label">FAQ</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FAQ)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

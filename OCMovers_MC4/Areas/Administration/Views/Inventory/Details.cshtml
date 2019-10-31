@@ -1,0 +1,21 @@
+﻿@model OCMovers_MVC4.Models.InventoryItem
+
+@{
+    ViewBag.Title = "Details";
+	Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>InventoryItem</legend>
+
+    <div class="display-label">inventoryItem</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.inventoryItem)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.InventoryItemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
