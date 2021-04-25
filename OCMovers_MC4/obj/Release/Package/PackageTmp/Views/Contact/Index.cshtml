@@ -1,5 +1,5 @@
 ﻿@model OCMovers_MC4.Models.Content
-
+@using OCMovers_MC4.Helpers
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,15 +10,15 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-6 contact">
-
             @Html.Raw(@Model.Contact)
-
-            @using (@Html.BeginForm("Index", "Contact", FormMethod.Post, new { name="contactForm" }))
+            @using (@Html.BeginForm("Index", "Contact", FormMethod.Post, new { name = "contactForm" }))
             {
+                @Html.AntiForgeryToken()
+
                 <fieldset>
                     <div class="form-group field">
                         @Html.Label("NAME")
-                        @Html.TextBox("Name", null, new {@class = "required"})
+                        @Html.TextBox("Name", null, new { @class = "required" })
                     </div>
                     <div class="form-group" style="margin-bottom: 10px;">
                         @Html.Label("TOPIC")
@@ -32,22 +32,30 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("EMAIL")
-                        @Html.TextBox("Email", null, new {@class = "required"})
+                        @Html.TextBox("Email", null, new { @class = "required" })
                     </div>
                     <div class="form-group">
                         @Html.Label("SUBJECT")
-                        @Html.TextBox("Subject", null, new {@class = "required"})
+                        @Html.TextBox("Subject", null, new { @class = "required" })
                     </div>
                     <div class="form-group">
                         @Html.Label("COMMENTS")
-                        @Html.TextArea("Comments", null, new {@class = "required mceNoEditor"})
+                        @Html.TextArea("Comments", null, new { @class = "required mceNoEditor" })
+                    </div>
+                    <div class="form-group">
+                        @Html.GoogleCaptcha()
+                        @Html.InvalidGoogleCaptchaLabel("Captcha is not valid !")
+                    </div>
+                    <div class="form-group">
+
+                        <div id="code">Enter this code: <span id="generatedCode">asdfasdf</span></div>
+                        @Html.TextBox("Code", null, new { @class = "required" })
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     </div>
                 </fieldset>
             }
-
         </div>
         @Html.Partial("_right-col")
     </div>
@@ -74,6 +82,8 @@
 {
     <script>
         $(document).ready(function () {
+
+            $('#generatedCode').text(generateRandomCode())
 
             $('form[name="contactForm"] input[type="submit"]').on('click', function (e) {
                 e.preventDefault();
@@ -104,6 +114,8 @@
 
                     // textbox, textarea
                     $(element).addClass('error');
+
+                   
                 },
                 unhighlight: function (element, error) {
                     // textbox, textarea
@@ -114,7 +126,18 @@
                         $('#estimateModal').modal('show');
                         return false;
                     } else {
-                        form.submit();
+                       
+                        var generatedCode = $("#generatedCode").text();
+                        var code = $("#Code").val();
+
+                        if (code == generatedCode) {
+                            form.submit();
+                        }
+                        else {
+                            alert("Please enter the code so we know you're not a bot");
+                        }
+
+                        
                     }
                 }
             });
@@ -127,6 +150,10 @@
             if ($("select[name='topic'] option:selected").index() == 1) {
                 $('#estimateModal').modal('show');
             }
+        }
+
+        function generateRandomCode() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         }
 
        

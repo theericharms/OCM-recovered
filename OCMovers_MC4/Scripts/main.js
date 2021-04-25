@@ -1,4 +1,4 @@
-var toValidate; // variable holding form validator
+﻿var toValidate; // variable holding form validator
 var customerConfirmation = false;
 //var addedAddresses = 0;
 
@@ -45,7 +45,7 @@ var locationTypes = ["Starting Location", "Ending Location", "Storage Unit", "Of
 $(document).ready(function () {
 
     /* Form Elements
-	==========================================================*/
+    ==========================================================*/
     $('html').on('click', '.rbox', toggleRbox);
     $('html').on('click', '.cbox', toggleCbox);
     $('html').on('click', '.dropdown-menu a', setBootstrapDropdownSelection);
@@ -66,16 +66,14 @@ $(document).ready(function () {
         minDate: new Date(),
         numberOfMonths: 1,
         showButtonPanel: true,
-        onClose: function (selectedDate) {
-        }
+        onClose: function (selectedDate) { }
     });
 
 
     $(".datepicker").datepicker({
         numberOfMonths: 1,
         showButtonPanel: true,
-        onClose: function (selectedDate) {
-        }
+        onClose: function (selectedDate) { }
     });;
 
     $('.dropdown-toggle').dropdown();
@@ -442,8 +440,7 @@ function oddEven() {
 
         if (thisIndex % 2 == 0) {
             $(this).addClass('odd');
-        }
-        else {
+        } else {
             $(this).addClass('even');
         }
     });
@@ -456,8 +453,13 @@ function showSpinner() {
     var dH = $(document).height();
     var sT = $(window).scrollTop();
 
-    $('#spinner').css({ 'width': wW + 'px', 'height': dH + 'px' }).fadeIn();
-    $('#spinner .working').css({ 'margin-top': sT + 200 + 'px' });
+    $('#spinner').css({
+        'width': wW + 'px',
+        'height': dH + 'px'
+    }).fadeIn();
+    $('#spinner .working').css({
+        'margin-top': sT + 200 + 'px'
+    });
 }
 
 function hideSpinner() {
@@ -479,8 +481,7 @@ function toggleCbox() {
             } else {
                 $(cbox).val(false);
             }
-        }
-        else {
+        } else {
             $(cbox).val('true');
             $(this).parent().find('p.heading.bigCheckbox').css('color', "white");
         }
@@ -494,22 +495,28 @@ function toggleCbox() {
 }
 
 function toggleRbox() {
+    console.log("toggleRbox")
     if ($(this).is('.rbox')) {
+        console.log("toggleRbox aaa")
         // reset all the radio boxes in the group
         $(this).closest('.field').find('.rbox').each(function () {
             $(this).removeClass('active');
         });
 
+        console.log("toggleRbox bbb")
+
         // toggle current radio box graphic
         $(this).toggleClass('active');
-
+        console.log("toggleRbox ccc")
         var thisVal = $(this).attr('id');
 
         $(this).closest('.field').find('input').val(thisVal);
+        console.log("toggleRbox ddd")
     }
 
     // validate hidden input element
     var valTarget = $(this).closest('.radio-group').find('input[type="hidden"]');
+    console.log(valTarget)
     $(this).closest('form').validate().element(valTarget);
 
     checkForHiddenElement($(this));
@@ -540,53 +547,89 @@ function checkForHiddenElement(el) {
     var thisId = $(el).attr('id');
     var thisLabel = $(el).closest('.radio-group')
 
-    if (thisId == 'true' || thisId == 'Apartment') {
+    console.log(el.closest('.slide').find('.typeSelect').val());
+
+    if (thisId == 'Apartment') {
+
+        resetOptions(el)
+
         el.closest('.slide').find('.question.hiddener').show().find('input, textarea').addClass('required');
-        el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').addClass('required');
-        el.closest('.slide').find('.question.hiddener2').hide();
 
-        el.closest('.question').nextAll('.question.hiddener2').hide().find('input, textarea, select').removeClass('required');
-        el.closest('.question').nextAll('.question.hiddener2').find('.field').each(function () {
-            $(this).find('.dropdown-toggle span').text('Select');
-            $(this).find('input[type="hidden"]').val("");
-            $(this).find('.radio-group input').val("");
-            $(this).find('textarea').val("");
-            $(this).find('.rbox').removeClass('active');
-        });
-    }
+    } else if (thisId == 'House') {
 
-    else if (thisId == 'false' || thisId == 'House') {
+        resetOptions(el)
+
         el.closest('.slide').find('.question.hiddener2').show().find('input, textarea, select').addClass('required');
-        el.closest('.slide').find('.question.hiddener').hide().find('input, textarea').removeClass('required');;
-        el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');;
 
         var id = el.closest('.slide').find('.question.hiddener2').find('.select2').attr('id');
         $("#" + id).val(null).trigger("change");
 
-        el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea').removeClass('required');
-        el.closest('.question').nextAll('.question.hiddener').find('.field').each(function () {
-            $(this).find('.dropdown-toggle span').text('Select');
-            $(this).find('input[type="hidden"]').val("");
-            $(this).find('.radio-group input').val("");
-            $(this).find('textarea').val("");
-            $(this).find('.rbox').removeClass('active');
-        })
-    }
 
-    else if (thisId == 'Stairs' || thisId == 'Elevator') {
+    } else if (thisId == 'Stairs' || thisId == 'Elevator' && el.closest('.slide').find('.typeSelect').val() != "Storage") {
+
         el.closest('.slide').find('.question.hiddener3').show().find('input, textarea').addClass('required');
         el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea').removeClass('required');
 
         // set select2 to null
         var id = el.closest('.slide').find('.question.hiddener3').find('.select2').attr('id')
-        console.log(id)
-        $("#" + id).val(null).trigger("change");
-    }
 
-    else if (thisId == 'Ground Floor') {
+        $("#" + id).val(null).trigger("change");
+
+    } else if (thisId == 'Ground Floor') {
         el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');
     }
+    else if (thisId == "Storage") {
+
+        resetOptions(el)
+        el.closest('.slide').find('.question.hiddener4').show().find('input, textarea, select').addClass('required');
+    }
+    else if (thisId == "Indoor") {
+        el.closest('.slide').find('.question.hiddener5').show().find('input, textarea, select').addClass('required');
+    }
+    else if (thisId == "Drive-up") {
+        el.closest('.slide').find('.question.hiddener5').hide().find('input, textarea, select').removeClass('required');
+    }
+    else if (thisId == "Other") {
+        resetOptions(el)
+        el.closest('.slide').find('.question.hiddener6').show().find('input, textarea, select').addClass('required');
+    }
 }
+
+function resetOptions(el) {
+    el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener')
+
+    el.closest('.question').nextAll('.question.hiddener1').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener1')
+
+    el.closest('.question').nextAll('.question.hiddener2').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener2')
+
+    el.closest('.question').nextAll('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener3')
+
+    el.closest('.question').nextAll('.question.hiddener4').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener4')
+
+    el.closest('.question').nextAll('.question.hiddener5').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener5')
+
+    el.closest('.question').nextAll('.question.hiddener6').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener6')
+
+}
+
+function clearValues(el, hiddenElement)
+{
+    el.closest('.question').nextAll(hiddenElement).find('.field').each(function () {
+        $(this).find('.dropdown-toggle span').text('Select');
+        $(this).find('input[type="hidden"]').val("");
+        $(this).find('.radio-group input').val("");
+        $(this).find('textarea').val("");
+        $(this).find('.rbox').removeClass('active');
+    })
+}
+
 
 function addReviewValue() {
     alert('click');

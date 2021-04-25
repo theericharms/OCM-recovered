@@ -109,7 +109,25 @@ namespace OCMovers_MC4.Models
         [Display(Name = "Elevator or Stairs at Destination Location")]
         public string elevStairsDestination { get; set; }
 
-		[Display(Name = "Stairs Restrictions")]
+        [Display(Name = "Storage type current location")]
+        public string StorageTypeCurrent { get; set; }
+
+        [Display(Name = "Storage type destination location")]
+        public string StorageTypeDestination { get; set; }
+
+        [Display(Name = "Storage type current location")]
+        public string StorageGroundFloorAccessCurrent { get; set; }
+
+        [Display(Name = "Storage type destination location")]
+        public string StorageGroundFloorAccessDestination { get; set; }
+
+        [Display(Name = "Other type current location")]
+        public string OtherCurrent { get; set; }
+
+        [Display(Name = "Other type destination location")]
+        public string OtherDestination { get; set; }
+
+        [Display(Name = "Stairs Restrictions")]
 		public bool elevStairsRes { get; set; }
 
 		[Display(Name = "Explanation")]

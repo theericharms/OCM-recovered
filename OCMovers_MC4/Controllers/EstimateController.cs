@@ -135,7 +135,7 @@ namespace OCMovers_MC4.Controllers
                         packingServices = estimateForm.packingServices,
                         phone = estimateForm.phone,
 
-                        // old fields not required here
+                        //old fields not required here
                         dwellingTypeCurrent = estimateForm.dwellingTypeCurrent,
                         dwellingTypeCurrentFloorApt = estimateForm.dwellingTypeCurrentFloorApt,
                         dwellingTypeCurrentFloorHouse = estimateForm.dwellingTypeCurrentFloorHouse,
@@ -169,7 +169,13 @@ namespace OCMovers_MC4.Controllers
                         numRoomsDestination = estimateForm.numRoomsDestination,
                         specialCareItem = estimateForm.specialCareItem,
                         stairsToFront = estimateForm.stairsToFront,
-                        submitDate = DateTime.Now
+                        submitDate = DateTime.Now,
+                        StorageGroundFloorAccessCurrent = estimateForm.StorageGroundFloorAccessCurrent,
+                        StorageGroundFloorAccessDestination = estimateForm.StorageGroundFloorAccessDestination,
+                        StorageTypeCurrent = estimateForm.StorageTypeCurrent,
+                        StorageTypeDestination = estimateForm.StorageTypeDestination,
+                        OtherCurrent = estimateForm.OtherCurrent,
+                        OtherDestination = estimateForm.OtherDestination
                     };
 
                     db.EstimateForm.Add(newEstimate);
@@ -262,165 +268,165 @@ namespace OCMovers_MC4.Controllers
             }
         }
 
-        //        [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        public JsonResult SendEstimate(OCMovers_MC4.ViewModel.EstimateForm estimateForm,  List<Address> addresses, List<EstimateFormInventory> model = null)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult SendEstimate(OCMovers_MC4.ViewModel.EstimateForm estimateForm, List<Address> addresses, List<EstimateFormInventory> model = null)
+        //{
+
+        //    Console.WriteLine(addresses);
+
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
         //        {
+        //            Guid EG = Guid.NewGuid();
 
-        //            Console.WriteLine(addresses);
+        //            estimateForm.EstimateGuid = EG;
 
-        //            try
+        //            OCMovers_MC4.Models.EstimateForm newEstimate = new OCMovers_MC4.Models.EstimateForm()
         //            {
-        //                if (ModelState.IsValid)
-        //                {
-        //                    Guid EG = Guid.NewGuid();
+        //                EstimateGuid = EG,
+        //                Feedback = estimateForm.Feedback,
+        //                InventoryWriteIn = estimateForm.InventoryWriteIn,
+        //                InventoryItem = estimateForm.InventoryItem,
+        //                IsDateFlexible = estimateForm.IsDateFlexible,
+        //                PreviousCustomer = estimateForm.PreviousCustomer,
+        //                PreviousCustomerName = estimateForm.PreviousCustomerName,
+        //                agreeCorrect = estimateForm.agreeCorrect,
+        //                email = estimateForm.email,
+        //                estBoxCount = estimateForm.estBoxCount,
+        //                moveDateEnd = estimateForm.moveDateEnd,
+        //                moveDescription = estimateForm.moveDescription,
+        //                name = estimateForm.name,
+        //                packingServices = estimateForm.packingServices,
+        //                phone = estimateForm.phone,
 
-        //                    estimateForm.EstimateGuid = EG;
+        //                // old fields not required here
+        //                dwellingTypeCurrent = "nothing",
+        //                dwellingTypeCurrentFloorApt = "nothing",
+        //                dwellingTypeCurrentFloorHouse = "nothing",
+        //                dwellingTypeDestination = "nothing",
+        //                dwellingTypeDestinationFloorApt = "nothing",
+        //                dwellingTypeDestinationFloorHouse = "nothing",
+        //                loc1BuildingName = "nothing",
+        //                loc1Address1 = "nothing",
+        //                loc1Address2 = "nothing",
+        //                loc1Apartment = "nothing",
+        //                loc1City = "nothing",
+        //                loc1State = "nothing",
+        //                loc1Postal = "nothing",
+        //                loc2BuildingName = "nothing",
+        //                loc2Address1 = "nothing",
+        //                loc2Address2 = "nothing",
+        //                loc2Apartment = "nothing",
+        //                loc2City = "nothing",
+        //                loc2State = "nothing",
+        //                loc2Postal = "nothing",
+        //                elevStairsCurrent = "nothing",
+        //                elevStairsDestination = "nothing",
+        //                elevStairsResExp = "nothing",
+        //                stairsToFrontExp = "nothing",
+        //                longWalksToDoorExp = "nothing",
+        //                specialCareItemExp = "nothing",
+        //                Addresses = new List<Address>(),
+        //                elevStairsRes = false,
+        //                longWalksToDoor = false,
+        //                numRoomsCurrent = 0,
+        //                numRoomsDestination = 0,
+        //                specialCareItem = false,
+        //                stairsToFront = false,
+        //                submitDate = DateTime.Now
+        //            };
 
-        //                    OCMovers_MC4.Models.EstimateForm newEstimate = new OCMovers_MC4.Models.EstimateForm()
-        //                    {
-        //                        EstimateGuid = EG,
-        //                        Feedback = estimateForm.Feedback,
-        //                        InventoryWriteIn = estimateForm.InventoryWriteIn,
-        //                        InventoryItem = estimateForm.InventoryItem,
-        //                        IsDateFlexible = estimateForm.IsDateFlexible,
-        //                        PreviousCustomer = estimateForm.PreviousCustomer,
-        //                        PreviousCustomerName = estimateForm.PreviousCustomerName,
-        //                        agreeCorrect = estimateForm.agreeCorrect,
-        //                        email = estimateForm.email,
-        //                        estBoxCount = estimateForm.estBoxCount,
-        //                        moveDateEnd = estimateForm.moveDateEnd,
-        //                        moveDescription = estimateForm.moveDescription,
-        //                        name = estimateForm.name,
-        //                        packingServices = estimateForm.packingServices,
-        //                        phone = estimateForm.phone,
+        //            db.EstimateForm.Add(newEstimate);
+        //            db.SaveChanges();
 
-        //                        // old fields not required here
-        //                        dwellingTypeCurrent = "nothing",
-        //                        dwellingTypeCurrentFloorApt = "nothing",
-        //                        dwellingTypeCurrentFloorHouse = "nothing",
-        //                        dwellingTypeDestination = "nothing",
-        //                        dwellingTypeDestinationFloorApt = "nothing",
-        //                        dwellingTypeDestinationFloorHouse = "nothing",
-        //                        loc1BuildingName = "nothing",
-        //                        loc1Address1 = "nothing",
-        //                        loc1Address2 = "nothing",
-        //                        loc1Apartment = "nothing",
-        //                        loc1City = "nothing",
-        //                        loc1State = "nothing",
-        //                        loc1Postal = "nothing",
-        //                        loc2BuildingName = "nothing",
-        //                        loc2Address1 = "nothing",
-        //                        loc2Address2 = "nothing",
-        //                        loc2Apartment = "nothing",
-        //                        loc2City = "nothing",
-        //                        loc2State = "nothing",
-        //                        loc2Postal = "nothing",
-        //                        elevStairsCurrent = "nothing",
-        //                        elevStairsDestination = "nothing",
-        //                        elevStairsResExp = "nothing",
-        //                        stairsToFrontExp = "nothing",
-        //                        longWalksToDoorExp = "nothing",
-        //                        specialCareItemExp = "nothing",
-        //                        Addresses = new List<Address>(),
-        //                        elevStairsRes = false,
-        //                        longWalksToDoor = false,
-        //                        numRoomsCurrent = 0,
-        //                        numRoomsDestination = 0,
-        //                        specialCareItem = false,
-        //                        stairsToFront = false,
-        //                        submitDate = DateTime.Now
-        //                    };
-
-        //                    db.EstimateForm.Add(newEstimate);
-        //                    db.SaveChanges();
-
-        //                    foreach (var a in addresses)
-        //                    {
-        //                        var newAddress = new CustomerAddress()
-        //                        {
-        //                            AddressType = a.AddressType,
-        //                            Address1 = a.Address1,
-        //                            AptNum = a.AptNum,
-        //                            BuildingName = a.BuildingName,
-        //                            City = a.City,
-        //                            EstimateId = newEstimate.EstimateFormID,
-        //                            Postcode = a.Postcode,
-        //                            State = a.State,
-        //                            AptFloor = a.AptFloor ?? 0,
-        //                            ElevatorStairs = a.ElevatorStairs,
-        //                            ElevatorStairsDescription = a.ElevatorStairsDescription,
-        //                            HouseOrApt = a.HouseOrApt,
-        //                            HouseStories = a.HouseStories,
-        //                            Inventory = a.Inventory,
-        //                            LongWalks = a.LongWalks,
-        //                            LongWalksDescription = a.LongWalksDescription,
-        //                            Notes = a.Notes,
-        //                            NumberOfBedrooms = a.NumberOfBedrooms,
-        //                            SpecialCare = a.SpecialCare,
-        //                            SpecialCareDescription = a.SpecialCareDescription,
-        //                            Stairs = a.Stairs,
-        //                            StairsDescription = a.StairsDescription,
-        //                            BoxCount = a.BoxCount
-        //                        };
-
-        //                        db.CustomerAddress.Add(newAddress);
-        //                        db.SaveChanges();
-        //                    }
-
-        //                    newEstimate.Addresses = addresses;
-
-        //                    UserMailer.Welcome(newEstimate).Send();
-
-        //                    return new JsonResult()
-        //                    {
-        //                        JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-        //                        Data = new { result = "success" }
-        //                    };
-
-        //                }
-        //                else
-        //                {
-        //                    var es = ModelState.Where(x => x.Value.Errors.Count > 0)
-        //                        .Select(x => new { x.Key, x.Value.Errors })
-        //                        .ToArray();
-
-        //                    var errors = ModelState
-        //                        .Where(x => x.Value.Errors.Count > 0)
-        //                        .Select(x => new { x.Key, x.Value.Errors })
-        //                        .ToArray();
-        //                    Debug.WriteLine("Model state not valid");
-
-        //                    StringBuilder sb = new StringBuilder();
-
-        //                    foreach (var c in errors)
-        //                    {
-        //                        sb.Append(string.Concat(c.Key, ": ", c.Errors[0].ErrorMessage, "<br>"));
-        //                    }
-
-        //                    string output = sb.ToString();
-
-        //                    CreateErrorLogEmail(output, null);
-
-        //                    UserMailer.SendModelStateError(output).Send();
-
-        //                    return new JsonResult()
-        //                    {
-        //                        JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-        //                        Data = new { result = output }
-        //                    };
-        //;
-        //                }
-        //            }
-        //            catch (Exception ex)
+        //            foreach (var a in addresses)
         //            {
-        //                var str = new JavaScriptSerializer().Serialize(estimateForm);
+        //                var newAddress = new CustomerAddress()
+        //                {
+        //                    AddressType = a.AddressType,
+        //                    Address1 = a.Address1,
+        //                    AptNum = a.AptNum,
+        //                    BuildingName = a.BuildingName,
+        //                    City = a.City,
+        //                    EstimateId = newEstimate.EstimateFormID,
+        //                    Postcode = a.Postcode,
+        //                    State = a.State,
+        //                    AptFloor = a.AptFloor ?? 0,
+        //                    ElevatorStairs = a.ElevatorStairs,
+        //                    ElevatorStairsDescription = a.ElevatorStairsDescription,
+        //                    HouseOrApt = a.HouseOrApt,
+        //                    HouseStories = a.HouseStories,
+        //                    Inventory = a.Inventory,
+        //                    LongWalks = a.LongWalks,
+        //                    LongWalksDescription = a.LongWalksDescription,
+        //                    Notes = a.Notes,
+        //                    NumberOfBedrooms = a.NumberOfBedrooms,
+        //                    SpecialCare = a.SpecialCare,
+        //                    SpecialCareDescription = a.SpecialCareDescription,
+        //                    Stairs = a.Stairs,
+        //                    StairsDescription = a.StairsDescription,
+        //                    BoxCount = a.BoxCount
+        //                };
 
-        //                CreateErrorLogEmail(str, ex);
-
-        //                throw;
+        //                db.CustomerAddress.Add(newAddress);
+        //                db.SaveChanges();
         //            }
+
+        //            newEstimate.Addresses = addresses;
+
+        //            UserMailer.Welcome(newEstimate).Send();
+
+        //            return new JsonResult()
+        //            {
+        //                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+        //                Data = new { result = "success" }
+        //            };
+
         //        }
+        //        else
+        //        {
+        //            var es = ModelState.Where(x => x.Value.Errors.Count > 0)
+        //                .Select(x => new { x.Key, x.Value.Errors })
+        //                .ToArray();
+
+        //            var errors = ModelState
+        //                .Where(x => x.Value.Errors.Count > 0)
+        //                .Select(x => new { x.Key, x.Value.Errors })
+        //                .ToArray();
+        //            Debug.WriteLine("Model state not valid");
+
+        //            StringBuilder sb = new StringBuilder();
+
+        //            foreach (var c in errors)
+        //            {
+        //                sb.Append(string.Concat(c.Key, ": ", c.Errors[0].ErrorMessage, "<br>"));
+        //            }
+
+        //            string output = sb.ToString();
+
+        //            CreateErrorLogEmail(output, null);
+
+        //            UserMailer.SendModelStateError(output).Send();
+
+        //            return new JsonResult()
+        //            {
+        //                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+        //                Data = new { result = output }
+        //            };
+        //            ;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var str = new JavaScriptSerializer().Serialize(estimateForm);
+
+        //        CreateErrorLogEmail(str, ex);
+
+        //        throw;
+        //    }
+        //}
 
         public void CreateErrorLogEmail(string str, Exception ex)
         {

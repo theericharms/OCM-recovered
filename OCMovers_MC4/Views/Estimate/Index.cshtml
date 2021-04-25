@@ -193,7 +193,15 @@
                                                             <div class="rbox" id="Apartment"></div>
                                                             <label>Apartment</label>
                                                         </div>
-                                                        @Html.HiddenFor(x => x.dwellingTypeCurrent, new { @class = "required type-radio" })
+                                                        <div class="input radio">
+                                                            <div class="rbox storage" id="Storage"></div>
+                                                            <label>Storage</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Other"></div>
+                                                            <label>Other</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.dwellingTypeCurrent, new { @class = "required type-radio typeSelect" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -234,12 +242,56 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            @*storage*@
+                                            <div class="question hiddener4">
+                                                <div class="sectionLine"></div>
+                                                <p class="heading">Is this a drive-up or indoor unit?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio address" id="Drive-up"></div>
+                                                            <label>Drive up</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox  rdio address" id="Indoor"></div>
+                                                            <label>Indoor</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.StorageTypeCurrent, new { @Value = "", @class = "type-radio required" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener5">
+                                                <div class="sectionLine"></div>
+                                                <p class="heading">Is the indoor storage accessible via ground floor or elevator?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio address noHide" id="Ground Floor"></div>
+                                                            <label>Ground Floor</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox address noHide" id="Elevator"></div>
+                                                            <label>Elevator</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.StorageGroundFloorAccessCurrent, new { @Value = "", @class = "type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*other*@
+                                            <div class="question hiddener6">
+                                                <p class="heading">Please provide any details we need to know about this Other location</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.OtherCurrent, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
                                         </div>
 
                                         @*destination house or apt*@
                                         <div class="slide">
                                             <div class="question">
-                                                <p class="heading">Destination Address: Is this a house or apartment?</p>
+                                                <p class="heading">Destination Address: Is this a house, apartment, storage or other?</p>
                                                 <div class="field radio">
                                                     <div class="radio-group">
                                                         <div class="input radio">
@@ -250,8 +302,16 @@
                                                             <div class="rbox" id="Apartment"></div>
                                                             <label>Apartment</label>
                                                         </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox storage" id="Storage"></div>
+                                                            <label>Storage</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox" id="Other"></div>
+                                                            <label>Other</label>
+                                                        </div>
 
-                                                        @Html.HiddenFor(x => x.dwellingTypeDestination, new { @Value = "", @class = "required type-radio" })
+                                                        @Html.HiddenFor(x => x.dwellingTypeDestination, new { @Value = "", @class = "required type-radio typeSelect" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -293,8 +353,52 @@
                                                 </div>
 
                                             </div>
+                                            @*storage*@
+                                            <div class="question hiddener4">
+                                                <div class="sectionLine"></div>
+                                                <p class="heading">Is this a drive-up or indoor unit?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio address" id="Drive-up"></div>
+                                                            <label>Drive up</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox  rdio address" id="Indoor"></div>
+                                                            <label>Indoor</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.StorageTypeDestination, new { @Value = "", @class = "type-radio required" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question hiddener5">
+                                                <div class="sectionLine"></div>
+                                                <p class="heading">Is the indoor storage accessible via ground floor or elevator?</p>
+                                                <div class="field">
+                                                    <div class="radio-group">
+                                                        <div class="input radio">
+                                                            <div class="rbox rdio address noHide" id="Ground Floor"></div>
+                                                            <label>Ground Floor</label>
+                                                        </div>
+                                                        <div class="input radio">
+                                                            <div class="rbox address noHide" id="Elevator"></div>
+                                                            <label>Elevator</label>
+                                                        </div>
+                                                        @Html.HiddenFor(x => x.StorageGroundFloorAccessDestination, new { @Value = "", @class = "type-radio" })
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            @*other*@
+                                            <div class="question hiddener6">
+                                                <p class="heading">Please provide any details we need to know about this Other location</p>
+                                                <div class="field">
+                                                    @Html.TextAreaFor(x => x.OtherDestination, new { @class = "mceNoEditor" })
+                                                </div>
+                                            </div>
                                         </div>
+
+
 
                                         @*time restrictions*@
                                         <div class="slide">

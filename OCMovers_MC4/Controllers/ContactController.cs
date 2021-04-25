@@ -6,6 +6,7 @@ using OCMovers_MVC4.Mailers;
 using OCMovers_MC4.DAL;
 using OCMovers_MC4.Models;
 using OCMovers_MC4.ViewModel;
+using OCMovers_MC4.Helpers;
 
 namespace OCMovers_MC4.Controllers
 {
@@ -36,7 +37,9 @@ namespace OCMovers_MC4.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Index(Contact contact)
+        [ValidateAntiForgeryToken]
+        [ValidateGoogleCaptcha]
+        public ActionResult Index(Contact contact)
 		{
 			Debug.WriteLine(contact.Name);
 			

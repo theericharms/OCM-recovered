@@ -1,18 +1,18 @@
-var toValidate; // variable holding form validator
+﻿var toValidate; // variable holding form validator
 var customerConfirmation = false;
 //var addedAddresses = 0;
 
 //$(document).ajaxStop($.unblockUI);
 
 var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-                'Colorado', 'Connecticut', 'Delaware', "District of Columbia", 'Florida', 'Georgia', 'Hawaii',
-                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    'Colorado', 'Connecticut', 'Delaware', "District of Columbia", 'Florida', 'Georgia', 'Hawaii',
+    'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+    'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+    'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
 
 var houseStories = [
@@ -30,6 +30,7 @@ for (var i = 1; i < 50; i++) {
 }
 
 var boxCount = [
+    "0", "0 - 10",
     "10 - 20",
     "20 - 30",
     "30 - 40",
@@ -44,7 +45,7 @@ var locationTypes = ["Starting Location", "Ending Location", "Storage Unit", "Of
 $(document).ready(function () {
 
     /* Form Elements
-	==========================================================*/
+    ==========================================================*/
     $('html').on('click', '.rbox', toggleRbox);
     $('html').on('click', '.cbox', toggleCbox);
     $('html').on('click', '.dropdown-menu a', setBootstrapDropdownSelection);
@@ -54,34 +55,32 @@ $(document).ready(function () {
     //$('html').on('click', 'button.submit', cancelEstimateForm);
 
     //$('html').on('click', '#addAddress', addAddress);
- //   $('html').on('click', '#cancelAddAddress', cancelAddAddress);
-   // $('html').on('click', '#addTheAddress', addTheAddress);
+    //   $('html').on('click', '#cancelAddAddress', cancelAddAddress);
+    // $('html').on('click', '#addTheAddress', addTheAddress);
     //$('html').on('click', '#removeAddressLine', removeAddressLine);
     //
-   // $('html').on('click', "input[type='submit']", validateNumberOfAddresses);
+    // $('html').on('click', "input[type='submit']", validateNumberOfAddresses);
 
 
     $("#to").datepicker({
         minDate: new Date(),
         numberOfMonths: 1,
         showButtonPanel: true,
-        onClose: function(selectedDate) {
-        }
+        onClose: function (selectedDate) { }
     });
 
 
     $(".datepicker").datepicker({
         numberOfMonths: 1,
         showButtonPanel: true,
-        onClose: function(selectedDate) {
-        }
+        onClose: function (selectedDate) { }
     });;
 
     $('.dropdown-toggle').dropdown();
 
     $('.estimate-nav-item').tooltip();
 
-    $('form[name="estimateForm"] input[type="submit"]').on('click', function(e) {
+    $('form[name="estimateForm"] input[type="submit"]').on('click', function (e) {
         e.preventDefault();
         var form = $("form");
 
@@ -94,7 +93,7 @@ $(document).ready(function () {
 
     var validator = $('form[name="estimateForm"]').validate({
         ignore: 'input.required.typeahead.tt-hint',
-        highlight: function(element, error) {
+        highlight: function (element, error) {
 
             // textbox, textarea
             $(element).addClass('error');
@@ -128,13 +127,13 @@ $(document).ready(function () {
             var errors = validator.numberOfInvalids();
 
             //if (addedAddresses < 2) {
-                //errors++;
+            //errors++;
             ////}
 
             $('.errorList').show();
             $('.errorCount').text(errors);
         },
-        unhighlight: function(element, error) {
+        unhighlight: function (element, error) {
             // textbox, textarea
             $(element).removeClass('error');
 
@@ -176,7 +175,7 @@ $(document).ready(function () {
                 $('.errorList').hide();
             }
         },
-        submitHandler: function(form) {
+        submitHandler: function (form) {
             if (!customerConfirmation) {
                 $('#myModal').modal('show');
             } else {
@@ -195,7 +194,7 @@ function submitEstimateForm(e) {
 
     //cancelAddAddress(e);
 
-	$('#myModal').modal('hide');
+    $('#myModal').modal('hide');
 
     $.blockUI({
         message: '<h1><img src="/Content/themes/base/images/spinner.gif" /> Just a moment...</h1>',
@@ -215,19 +214,17 @@ function submitEstimateForm(e) {
         }
     });
 
-	$('form').submit();
+    $('form').submit();
     return false;
 }
 
-function cancelEstimateForm()
-{
-	customerConfirmation = false;
+function cancelEstimateForm() {
+    customerConfirmation = false;
 }
 
-function scrollToDescriptionBox(e)
-{
-	e.preventDefault();
-	$('html, body').animate({
+function scrollToDescriptionBox(e) {
+    e.preventDefault();
+    $('html, body').animate({
         scrollTop: $("#addLocation").offset().top - 130
     }, 300);
 }
@@ -268,7 +265,7 @@ function scrollToDescriptionBox(e)
 //    if (e) {
 //        e.preventDefault();
 //    }
-    
+
 //    $('#address').empty();
 
 //}
@@ -376,7 +373,7 @@ function scrollToDescriptionBox(e)
 
 //function orderAddresses() {
 
-   
+
 //    var x = 0;
 
 //    $(".answerWrapper").each(function () {
@@ -437,205 +434,226 @@ function scrollToDescriptionBox(e)
 //    $(this).closest('.addressLine').remove();
 //}
 
-function oddEven()
-{
-	$('.slide').each(function() {
-		var thisIndex = $(this).index();
+function oddEven() {
+    $('.slide').each(function () {
+        var thisIndex = $(this).index();
 
-		if (thisIndex%2 == 0)
-		{
-			$(this).addClass('odd');
-		}
-		else
-		{
-			$(this).addClass('even');
-		}
-	});
+        if (thisIndex % 2 == 0) {
+            $(this).addClass('odd');
+        } else {
+            $(this).addClass('even');
+        }
+    });
 }
 
-function showSpinner() 
-{
+function showSpinner() {
 
-	var wW = $(document).width();
-	var wH = $(window).height();
-	var dH = $(document).height();
-	var sT = $(window).scrollTop();
+    var wW = $(document).width();
+    var wH = $(window).height();
+    var dH = $(document).height();
+    var sT = $(window).scrollTop();
 
-	$('#spinner').css({ 'width': wW + 'px', 'height': dH + 'px' }).fadeIn();
-    $('#spinner .working').css({ 'margin-top': sT + 200 + 'px' });
+    $('#spinner').css({
+        'width': wW + 'px',
+        'height': dH + 'px'
+    }).fadeIn();
+    $('#spinner .working').css({
+        'margin-top': sT + 200 + 'px'
+    });
 }
 
 function hideSpinner() {
-	$('#spinner').fadeOut();
+    $('#spinner').fadeOut();
 }
 
-function toggleCbox()
-{
-	if ($(this).is('.cbox'))
-	{
-		// toggle checkbox graphic
-		$(this).toggleClass('active');
+function toggleCbox() {
+    if ($(this).is('.cbox')) {
+        // toggle checkbox graphic
+        $(this).toggleClass('active');
 
-	    var cbox = $(this).parent().find('input');
+        var cbox = $(this).parent().find('input');
 
-		// set hidden checkbox value to true
-	    if ($(cbox).val() == 'true')
-		{
-		    if ($(cbox).hasClass("required")) {
-		        $(this).parent().find('p.heading.bigCheckbox').css('color', "red");
-		        $(cbox).val(null);
-		    } else {
-		        $(cbox).val(false);
-		    }
-		}
-		else
-		{
-	        $(cbox).val('true');
-			$(this).parent().find('p.heading.bigCheckbox').css('color', "white");
-		}
-	}
+        // set hidden checkbox value to true
+        if ($(cbox).val() == 'true') {
+            if ($(cbox).hasClass("required")) {
+                $(this).parent().find('p.heading.bigCheckbox').css('color', "red");
+                $(cbox).val(null);
+            } else {
+                $(cbox).val(false);
+            }
+        } else {
+            $(cbox).val('true');
+            $(this).parent().find('p.heading.bigCheckbox').css('color', "white");
+        }
+    }
 
-	// validate hidden input element
-	if($(this).parent().find('input[type="hidden"]').hasClass('required'))
-	{
-	    var valTarget = $(this).parent().find('input[type="hidden"]').attr('name');
-		$(this).closest('form').validate().element('input[name="' + valTarget +'"]');
-	}
+    // validate hidden input element
+    if ($(this).parent().find('input[type="hidden"]').hasClass('required')) {
+        var valTarget = $(this).parent().find('input[type="hidden"]').attr('name');
+        $(this).closest('form').validate().element('input[name="' + valTarget + '"]');
+    }
 }
 
-function toggleRbox()
-{
-	if ($(this).is('.rbox'))
-	{
-		// reset all the radio boxes in the group
-	    $(this).closest('.field').find('.rbox').each(function() {
-	        $(this).removeClass('active');
-	    });
+function toggleRbox() {
+    console.log("toggleRbox")
+    if ($(this).is('.rbox')) {
+        console.log("toggleRbox aaa")
+        // reset all the radio boxes in the group
+        $(this).closest('.field').find('.rbox').each(function () {
+            $(this).removeClass('active');
+        });
 
-		// toggle current radio box graphic
-		$(this).toggleClass('active');
+        console.log("toggleRbox bbb")
 
-		var thisVal = $(this).attr('id');
+        // toggle current radio box graphic
+        $(this).toggleClass('active');
+        console.log("toggleRbox ccc")
+        var thisVal = $(this).attr('id');
 
-	    $(this).closest('.field').find('input').val(thisVal);
-	}
+        $(this).closest('.field').find('input').val(thisVal);
+        console.log("toggleRbox ddd")
+    }
 
-	// validate hidden input element
-	var valTarget = $(this).closest('.radio-group').find('input[type="hidden"]');
-	$(this).closest('form').validate().element(valTarget);
+    // validate hidden input element
+    var valTarget = $(this).closest('.radio-group').find('input[type="hidden"]');
+    console.log(valTarget)
+    $(this).closest('form').validate().element(valTarget);
 
-	checkForHiddenElement($(this));
+    checkForHiddenElement($(this));
 }
 
-function setBootstrapDropdownSelection(e)
-{
-	e.preventDefault();
-	
-	// text of dropdown
-	var thisText = $(this).text();
-	
-	// hold current value of selection available globally
-	thisCurVal = thisText;
+function setBootstrapDropdownSelection(e) {
+    e.preventDefault();
 
-	$(this).closest('.dropdown').find('a.dropdown-toggle span:first-child').text(thisText);
+    // text of dropdown
+    var thisText = $(this).text();
 
-	// for dropdowns within forms setting values to hidden fields
-	if ($('form').length)
-	{
-		$(this).closest('.field').find('input[type="hidden"]').val(thisText);
-	}
+    // hold current value of selection available globally
+    thisCurVal = thisText;
 
-	// validate hidden input element
+    $(this).closest('.dropdown').find('a.dropdown-toggle span:first-child').text(thisText);
+
+    // for dropdowns within forms setting values to hidden fields
+    if ($('form').length) {
+        $(this).closest('.field').find('input[type="hidden"]').val(thisText);
+    }
+
+    // validate hidden input element
     var valTarget = $(this).closest('.field').find('input[type="hidden"]');
-	$(this).closest('form').validate().element(valTarget);
+    $(this).closest('form').validate().element(valTarget);
 }
 
-function checkForHiddenElement(el) 
-{
+function checkForHiddenElement(el) {
     var thisId = $(el).attr('id');
     var thisLabel = $(el).closest('.radio-group')
 
-	if (thisId == 'true' || thisId == 'Apartment')
-	{
-	    el.closest('.slide').find('.question.hiddener').show().find('input, textarea').addClass('required');
-	    el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').addClass('required');
-		el.closest('.slide').find('.question.hiddener2').hide();
+    console.log(el.closest('.slide').find('.typeSelect').val());
 
-		el.closest('.question').nextAll('.question.hiddener2').hide().find('input, textarea, select').removeClass('required');
-	    el.closest('.question').nextAll('.question.hiddener2').find('.field').each(function() {
-	        $(this).find('.dropdown-toggle span').text('Select');
-	        $(this).find('input[type="hidden"]').val("");
-	        $(this).find('.radio-group input').val("");
-	        $(this).find('textarea').val("");
-	        $(this).find('.rbox').removeClass('active');
-	    });
-	}
-	
-	else if (thisId == 'false' || thisId == 'House')
-	{
-	    el.closest('.slide').find('.question.hiddener2').show().find('input, textarea, select').addClass('required');
-		el.closest('.slide').find('.question.hiddener').hide().find('input, textarea').removeClass('required');;
-		el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');;
+    if (thisId == 'Apartment') {
 
-	    var id = el.closest('.slide').find('.question.hiddener2').find('.select2').attr('id');
-		$("#" + id).val(null).trigger("change");
+        resetOptions(el)
 
-		el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea').removeClass('required');
-		el.closest('.question').nextAll('.question.hiddener').find('.field').each(function() {
-			$(this).find('.dropdown-toggle span').text('Select');
-			$(this).find('input[type="hidden"]').val("");
-		    $(this).find('.radio-group input').val("");
-			$(this).find('textarea').val("");
-			$(this).find('.rbox').removeClass('active');
-		})
-	}
+        el.closest('.slide').find('.question.hiddener').show().find('input, textarea').addClass('required');
 
-	else if (thisId == 'Stairs' || thisId == 'Elevator')
-	{
-		el.closest('.slide').find('.question.hiddener3').show().find('input, textarea').addClass('required');
-		el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea').removeClass('required');
+    } else if (thisId == 'House') {
+
+        resetOptions(el)
+
+        el.closest('.slide').find('.question.hiddener2').show().find('input, textarea, select').addClass('required');
+
+        var id = el.closest('.slide').find('.question.hiddener2').find('.select2').attr('id');
+        $("#" + id).val(null).trigger("change");
+
+
+    } else if (thisId == 'Stairs' || thisId == 'Elevator' && el.closest('.slide').find('.typeSelect').val() != "Storage") {
+
+        el.closest('.slide').find('.question.hiddener3').show().find('input, textarea').addClass('required');
+        el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea').removeClass('required');
 
         // set select2 to null
-		var id =el.closest('.slide').find('.question.hiddener3').find('.select2').attr('id')
-        console.log(id)
-		$("#" + id).val(null).trigger("change");
-	}
+        var id = el.closest('.slide').find('.question.hiddener3').find('.select2').attr('id')
 
-	else if (thisId == 'Ground Floor')
-	{
-		el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');
-	}
+        $("#" + id).val(null).trigger("change");
+
+    } else if (thisId == 'Ground Floor') {
+        el.closest('.slide').find('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');
+    }
+    else if (thisId == "Storage") {
+
+        resetOptions(el)
+        el.closest('.slide').find('.question.hiddener4').show().find('input, textarea, select').addClass('required');
+    }
+    else if (thisId == "Indoor") {
+        el.closest('.slide').find('.question.hiddener5').show().find('input, textarea, select').addClass('required');
+    }
+    else if (thisId == "Drive-up") {
+        el.closest('.slide').find('.question.hiddener5').hide().find('input, textarea, select').removeClass('required');
+    }
+    else if (thisId == "Other") {
+        resetOptions(el)
+        el.closest('.slide').find('.question.hiddener6').show().find('input, textarea, select').addClass('required');
+    }
 }
+
+function resetOptions(el) {
+    el.closest('.question').nextAll('.question.hiddener').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener')
+
+    el.closest('.question').nextAll('.question.hiddener1').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener1')
+
+    el.closest('.question').nextAll('.question.hiddener2').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener2')
+
+    el.closest('.question').nextAll('.question.hiddener3').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener3')
+
+    el.closest('.question').nextAll('.question.hiddener4').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener4')
+
+    el.closest('.question').nextAll('.question.hiddener5').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener5')
+
+    el.closest('.question').nextAll('.question.hiddener6').hide().find('input, textarea, select').removeClass('required');
+    clearValues(el,'.question.hiddener6')
+
+}
+
+function clearValues(el, hiddenElement)
+{
+    el.closest('.question').nextAll(hiddenElement).find('.field').each(function () {
+        $(this).find('.dropdown-toggle span').text('Select');
+        $(this).find('input[type="hidden"]').val("");
+        $(this).find('.radio-group input').val("");
+        $(this).find('textarea').val("");
+        $(this).find('.rbox').removeClass('active');
+    })
+}
+
 
 function addReviewValue() {
     alert('click');
 }
 
-function swapPlaceholder()
-{
-	// on blur, if value is blank, re-enter the placeholder text
-	if ($(this).val() == "")
-	{
-		$(this).val($(this).attr('id'));
-	}
+function swapPlaceholder() {
+    // on blur, if value is blank, re-enter the placeholder text
+    if ($(this).val() == "") {
+        $(this).val($(this).attr('id'));
+    }
 }
 
-function clearPlaceholder()
-{
-	if ($(this).val() == $(this).attr('id'))
-	{
-		$(this).val("");
-	}
+function clearPlaceholder() {
+    if ($(this).val() == $(this).attr('id')) {
+        $(this).val("");
+    }
 }
 
-function onSuccess(response)
-{
-	//alert('success')
+function onSuccess(response) {
+    //alert('success')
 }
 
-function onFailure(response)
-{
-	//alert('Failure')
+function onFailure(response) {
+    //alert('Failure')
 }
 
 function isNumber(evt) {

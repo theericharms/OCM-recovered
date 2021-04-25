@@ -219,81 +219,17 @@
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
-    <Compile Include="Migrations\201603150353090_Initial.cs" />
-    <Compile Include="Migrations\201603150353090_Initial.Designer.cs">
-      <DependentUpon>201603150353090_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202104102042378_reset.cs" />
+    <Compile Include="Migrations\202104102042378_reset.Designer.cs">
+      <DependentUpon>202104102042378_reset.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605251456070_testform.cs" />
-    <Compile Include="Migrations\201605251456070_testform.Designer.cs">
-      <DependentUpon>201605251456070_testform.cs</DependentUpon>
+    <Compile Include="Migrations\202104102134158_storage.cs" />
+    <Compile Include="Migrations\202104102134158_storage.Designer.cs">
+      <DependentUpon>202104102134158_storage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612041841345_previouscustomer.cs" />
-    <Compile Include="Migrations\201612041841345_previouscustomer.Designer.cs">
-      <DependentUpon>201612041841345_previouscustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612041955288_feedback.cs" />
-    <Compile Include="Migrations\201612041955288_feedback.Designer.cs">
-      <DependentUpon>201612041955288_feedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701161955585_packingservices.cs" />
-    <Compile Include="Migrations\201701161955585_packingservices.Designer.cs">
-      <DependentUpon>201701161955585_packingservices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709050102382_addressTable.cs" />
-    <Compile Include="Migrations\201709050102382_addressTable.Designer.cs">
-      <DependentUpon>201709050102382_addressTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709162015525_updateAddressTable.cs" />
-    <Compile Include="Migrations\201709162015525_updateAddressTable.Designer.cs">
-      <DependentUpon>201709162015525_updateAddressTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709162121593_fixHouseStories.cs" />
-    <Compile Include="Migrations\201709162121593_fixHouseStories.Designer.cs">
-      <DependentUpon>201709162121593_fixHouseStories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709162124099_refixHouseStories.cs" />
-    <Compile Include="Migrations\201709162124099_refixHouseStories.Designer.cs">
-      <DependentUpon>201709162124099_refixHouseStories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709162127143_fixLongWalksDescription.cs" />
-    <Compile Include="Migrations\201709162127143_fixLongWalksDescription.Designer.cs">
-      <DependentUpon>201709162127143_fixLongWalksDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709162127442_refixLongWalksDescription.cs" />
-    <Compile Include="Migrations\201709162127442_refixLongWalksDescription.Designer.cs">
-      <DependentUpon>201709162127442_refixLongWalksDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709231650567_storageTypes.cs" />
-    <Compile Include="Migrations\201709231650567_storageTypes.Designer.cs">
-      <DependentUpon>201709231650567_storageTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709301709069_aptmultiplelevels.cs" />
-    <Compile Include="Migrations\201709301709069_aptmultiplelevels.Designer.cs">
-      <DependentUpon>201709301709069_aptmultiplelevels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709301714142_boxcount.cs" />
-    <Compile Include="Migrations\201709301714142_boxcount.Designer.cs">
-      <DependentUpon>201709301714142_boxcount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709301717187_storagegroundfloorelevator.cs" />
-    <Compile Include="Migrations\201709301717187_storagegroundfloorelevator.Designer.cs">
-      <DependentUpon>201709301717187_storagegroundfloorelevator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709301724436_aptmultlevelsdesc.cs" />
-    <Compile Include="Migrations\201709301724436_aptmultlevelsdesc.Designer.cs">
-      <DependentUpon>201709301724436_aptmultlevelsdesc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710071814193_redefineboxcount.cs" />
-    <Compile Include="Migrations\201710071814193_redefineboxcount.Designer.cs">
-      <DependentUpon>201710071814193_redefineboxcount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710071837035_updatestoragegroundfloorelevator.cs" />
-    <Compile Include="Migrations\201710071837035_updatestoragegroundfloorelevator.Designer.cs">
-      <DependentUpon>201710071837035_updatestoragegroundfloorelevator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802242113411_elevatorstairsToString.cs" />
-    <Compile Include="Migrations\201802242113411_elevatorstairsToString.Designer.cs">
-      <DependentUpon>201802242113411_elevatorstairsToString.cs</DependentUpon>
+    <Compile Include="Migrations\202104102204565_typeOther.cs" />
+    <Compile Include="Migrations\202104102204565_typeOther.Designer.cs">
+      <DependentUpon>202104102204565_typeOther.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -322,10 +258,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.min.css" />
+    <Content Include="Content\main-old2.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\normalize.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\responsive\main.css" />
     <Content Include="Content\themes\base\images\ajax-loader-bar.gif" />
     <Content Include="Content\themes\base\images\ajax-loader.gif" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -596,6 +534,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\main-new.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
@@ -649,7 +588,7 @@
     <Content Include="Views\Contact\Thanks.cshtml" />
     <Content Include="Views\Contact\_sent.cshtml" />
     <Content Include="Views\Estimate\Index.cshtml" />
-    <Content Include="Views\Estimate\Index-o.cshtml" />
+    <Content Include="Views\Estimate\Index-new.cshtml" />
     <Content Include="Views\Estimate\SendEstimate.cshtml" />
     <Content Include="Views\Estimate\Thanks.cshtml" />
     <Content Include="Views\Estimate\_roomItem.cshtml" />
@@ -704,62 +643,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603150353090_Initial.resx">
-      <DependentUpon>201603150353090_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104102042378_reset.resx">
+      <DependentUpon>202104102042378_reset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605251456070_testform.resx">
-      <DependentUpon>201605251456070_testform.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104102134158_storage.resx">
+      <DependentUpon>202104102134158_storage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612041841345_previouscustomer.resx">
-      <DependentUpon>201612041841345_previouscustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612041955288_feedback.resx">
-      <DependentUpon>201612041955288_feedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701161955585_packingservices.resx">
-      <DependentUpon>201701161955585_packingservices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709050102382_addressTable.resx">
-      <DependentUpon>201709050102382_addressTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709162015525_updateAddressTable.resx">
-      <DependentUpon>201709162015525_updateAddressTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709162121593_fixHouseStories.resx">
-      <DependentUpon>201709162121593_fixHouseStories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709162124099_refixHouseStories.resx">
-      <DependentUpon>201709162124099_refixHouseStories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709162127143_fixLongWalksDescription.resx">
-      <DependentUpon>201709162127143_fixLongWalksDescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709162127442_refixLongWalksDescription.resx">
-      <DependentUpon>201709162127442_refixLongWalksDescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709231650567_storageTypes.resx">
-      <DependentUpon>201709231650567_storageTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709301709069_aptmultiplelevels.resx">
-      <DependentUpon>201709301709069_aptmultiplelevels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709301714142_boxcount.resx">
-      <DependentUpon>201709301714142_boxcount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709301717187_storagegroundfloorelevator.resx">
-      <DependentUpon>201709301717187_storagegroundfloorelevator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709301724436_aptmultlevelsdesc.resx">
-      <DependentUpon>201709301724436_aptmultlevelsdesc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710071814193_redefineboxcount.resx">
-      <DependentUpon>201710071814193_redefineboxcount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710071837035_updatestoragegroundfloorelevator.resx">
-      <DependentUpon>201710071837035_updatestoragegroundfloorelevator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802242113411_elevatorstairsToString.resx">
-      <DependentUpon>201802242113411_elevatorstairsToString.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104102204565_typeOther.resx">
+      <DependentUpon>202104102204565_typeOther.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

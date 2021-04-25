@@ -8,16 +8,14 @@
     <meta name="description" content="@ViewBag.Description">
     <meta name="keywords" content="@ViewBag.Keywords">
     <meta name="viewport" content="width=device-width">
-
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
     @*<link rel="stylesheet" href="/Content/normalize.min.css">*@
     @Styles.Render("~/bundles/css")
-
     <script src="https://use.fontawesome.com/721d17dcea.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
     <link rel="shortcut icon" href="/Content/themes/base/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/Content/themes/base/images/favicon.ico" type="image/x-icon">
-
 </head>
 <body>
     <header class="navbar navbar-default">
@@ -72,7 +70,7 @@
                     <p><strong>Office Hours</strong> Monday - Friday, 8am - 4pm</p>
                     <p><strong>Phone</strong> (267) 205-5209</p>
                     <p><strong>Email</strong> <a href="mailto:oldcitymovers@oldcitymovers.com">oldcitymovers@oldcitymovers.com</a></p>
-                    <p><strong>Address</strong>  1417 N. 2nd Street #3R, Philadelphia, PA 19122</p>
+                    <p><strong>Address</strong>2542 East Clearfield St., Apt C, Philadelphia, PA 19134</p>
                 </div>
                 <div class="menu col-xs-12 col-md-4 col-md-offset-2">
                     <ul class="list-unstyled">
@@ -105,7 +103,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         tinymce.init({
             selector: 'textarea:not(.mceNoEditor)',

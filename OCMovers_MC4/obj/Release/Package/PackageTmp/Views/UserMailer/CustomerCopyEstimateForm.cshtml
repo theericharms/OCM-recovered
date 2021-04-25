@@ -2,21 +2,21 @@
 @using OCMovers_MC4.Models
 
 @{
-	EstimateForm estimateForm = (EstimateForm)ViewData["estimateForm"];
+    EstimateForm estimateForm = (EstimateForm)ViewData["estimateForm"];
 
-	//EstimateFormInventory estimateFormInventory = (IEnumerable)(EstimateFormInventory)ViewData["estimateFormInventory"];
-	//EstimateFormInventory estimateFormInventory = (IEnumerable<EstimateFormInventory>)ViewData["estimateFormInventory"];
+    //EstimateFormInventory estimateFormInventory = (IEnumerable)(EstimateFormInventory)ViewData["estimateFormInventory"];
+    //EstimateFormInventory estimateFormInventory = (IEnumerable<EstimateFormInventory>)ViewData["estimateFormInventory"];
 
-	//EstimateFormInventory estimateFormInventory = ViewData["estimateFormInventory"] as List<EstimateFormInventory>;
+    //EstimateFormInventory estimateFormInventory = ViewData["estimateFormInventory"] as List<EstimateFormInventory>;
 
-	//DateTime movestart = @estimateForm.moveDateStart;
-	DateTime moveend = @estimateForm.moveDateEnd;
+    //DateTime movestart = @estimateForm.moveDateStart;
+    DateTime moveend = @estimateForm.moveDateEnd;
 }
 
 @{
     var name = @estimateForm.name;
     var temp = name.Split(' ');
-    
+
     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
     var firstName = textInfo.ToTitleCase(temp[0]);
 }
@@ -29,57 +29,59 @@
 
 <p>We will get back to you with a formal estimate via email to @estimateForm.email within 24 hours.  If you have any questions, please do not hesitate to ask.</p>
 
-<p>Thank you!<br />
-Old City Movers<br />
-Philadelphia, PA<br />
-https://oldcitymovers.com<br />
-(267) 205-5209<br />
+<p>
+    Thank you!<br />
+    Old City Movers<br />
+    Philadelphia, PA<br />
+    https://oldcitymovers.com<br />
+    (267) 205-5209<br />
 </p>
 
 
 <table style="width: 600px;" cellpadding="5" cellspacing="0">
     <tr>
-		<td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Contact Information</b></td>
-	</tr>
+        <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Contact Information</b></td>
+    </tr>
     <tr>
         <td>Name:</td>
         <td>@textInfo.ToTitleCase(@estimateForm.name) </td>
     </tr>
     <tr>
         <td>Previous Customer:</td>
-        <td>@(estimateForm.PreviousCustomer ? "Yes" : "No") 
+        <td>
+            @(estimateForm.PreviousCustomer ? "Yes" : "No")
             @if (!string.IsNullOrEmpty(estimateForm.PreviousCustomerName))
             {
                 @estimateForm.PreviousCustomerName
-            } 
+            }
         </td>
     </tr>
     <tr>
         <td>Packing Services:</td>
         <td>@(estimateForm.packingServices ? "Yes" : "No")</td>
     </tr>
-	<tr>
-		<td>Email:</td>
-		<td>@estimateForm.email</td>
-	</tr>
-	<tr>
-	    <td>Phone:</td>
+    <tr>
+        <td>Email:</td>
+        <td>@estimateForm.email</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
         @{
-            var phone = @estimateForm.phone.Replace("-","").Replace("(","").Replace(")","").Replace(" ","").Trim();
+            var phone = @estimateForm.phone.Replace("-", "").Replace("(", "").Replace(")", "").Replace(" ", "").Trim();
         }
-		<td>@String.Format("{0:###-###-####}", Convert.ToInt64(@phone))</td>
-	</tr>
+        <td>@String.Format("{0:###-###-####}", Convert.ToInt64(@phone))</td>
+    </tr>
     <tr>
         <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Locations Information</b></td>
     </tr>
     <tr>
-		<td style="width: 190px; vertical-align: top;">Brief Descripton of Move:</td>
-		<td>@estimateForm.moveDescription</td>
-	</tr>
-	@*<tr>
-		<td style="width: 190px;">Start Move Date:</td>
-		<td>@String.Format("{0:dddd, MMMM d, yyyy}", @movestart)</td>
-	</tr>*@
+        <td style="width: 190px; vertical-align: top;">Brief Descripton of Move:</td>
+        <td>@estimateForm.moveDescription</td>
+    </tr>
+    @*<tr>
+            <td style="width: 190px;">Start Move Date:</td>
+            <td>@String.Format("{0:dddd, MMMM d, yyyy}", @movestart)</td>
+        </tr>*@
     <tr>
         <td style="width: 190px;">End Move Date:</td>
         <td>@String.Format("{0:dddd, MMMM d, yyyy}", @moveend)</td>
@@ -112,24 +114,26 @@ https://oldcitymovers.com<br />
         <td style="width: 190px;">Current Dwelling Type:</td>
         <td>@estimateForm.dwellingTypeCurrent</td>
     </tr>
-    @{
-        if (@estimateForm.dwellingTypeCurrentFloorHouse == null)
-        {
-            <tr>
-                <td style="width: 190px;">Current Apt Floor:</td>
-                <td>@estimateForm.dwellingTypeCurrentFloorApt</td>
-            </tr>
-
-        }
-        else
-        {
-            <tr>
-                <td style="width: 190px;">Current House Stories:</td>
-                <td>@estimateForm.dwellingTypeCurrentFloorHouse</td>
-            </tr>
-
-        }
-    }
+    <tr>
+        <td style="width: 190px;">Current Apt Floor:</td>
+        <td>@estimateForm.dwellingTypeCurrentFloorApt</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Current House Stories:</td>
+        <td>@estimateForm.dwellingTypeCurrentFloorHouse</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Storage Type:</td>
+        <td>@estimateForm.StorageTypeCurrent</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Storage Access:</td>
+        <td>@estimateForm.StorageGroundFloorAccessCurrent</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Other description:</td>
+        <td>@estimateForm.OtherCurrent</td>
+    </tr>
     <tr>
         <td>Elevator Stairs Current:</td>
         <td>@estimateForm.elevStairsCurrent</td>
@@ -138,34 +142,34 @@ https://oldcitymovers.com<br />
         <td>Number of Rooms Current:</td>
         <td>@estimateForm.numRoomsCurrent</td>
     </tr>
-	<tr>
-		<td>Current Building Name:</td>
-		<td>@estimateForm.loc1BuildingName</td>
-	</tr>
-	<tr>
-		<td>Current Address 1:</td>
-		<td>@estimateForm.loc1Address1</td>
-	</tr>
-	@*<tr>
-		<td>Current Address 2:</td>
-		<td>@estimateForm.loc1Address2</td>
-	</tr>*@
-	<tr>
-		<td>Current Apartment:</td>
-		<td>@estimateForm.loc1Apartment</td>
-	</tr>
-	<tr>
-		<td>Current City:</td>
-		<td>@estimateForm.loc1City</td>
-	</tr>
-	<tr>
-		<td>Current State:</td>
-		<td>@estimateForm.loc1State</td>
-	</tr>
-	<tr>
-		<td>Current Postal Code:</td>
-		<td>@estimateForm.loc1Postal</td>
-	</tr>
+    <tr>
+        <td>Current Building Name:</td>
+        <td>@estimateForm.loc1BuildingName</td>
+    </tr>
+    <tr>
+        <td>Current Address 1:</td>
+        <td>@estimateForm.loc1Address1</td>
+    </tr>
+    @*<tr>
+            <td>Current Address 2:</td>
+            <td>@estimateForm.loc1Address2</td>
+        </tr>*@
+    <tr>
+        <td>Current Apartment:</td>
+        <td>@estimateForm.loc1Apartment</td>
+    </tr>
+    <tr>
+        <td>Current City:</td>
+        <td>@estimateForm.loc1City</td>
+    </tr>
+    <tr>
+        <td>Current State:</td>
+        <td>@estimateForm.loc1State</td>
+    </tr>
+    <tr>
+        <td>Current Postal Code:</td>
+        <td>@estimateForm.loc1Postal</td>
+    </tr>
     <tr>
         <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Destination Address</b></td>
     </tr>
@@ -177,24 +181,26 @@ https://oldcitymovers.com<br />
         <td style="width: 190px;">Destination Dwelling Type:</td>
         <td>@estimateForm.dwellingTypeDestination</td>
     </tr>
-    @{
-        if (@estimateForm.dwellingTypeDestinationFloorHouse == null)
-        {
-            <tr>
-                <td style="width: 190px;">Destination Apt Floor:</td>
-                <td>@estimateForm.dwellingTypeDestinationFloorApt</td>
-            </tr>
-
-        }
-        else
-        {
-            <tr>
-                <td style="width: 190px;">Destination House Stories:</td>
-                <td>@estimateForm.dwellingTypeDestinationFloorHouse</td>
-            </tr>
-
-        }
-    }
+    <tr>
+        <td style="width: 190px;">Current Apt Floor:</td>
+        <td>@estimateForm.dwellingTypeDestinationFloorApt</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Current House Stories:</td>
+        <td>@estimateForm.dwellingTypeDestinationFloorHouse</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Storage Type:</td>
+        <td>@estimateForm.StorageTypeDestination</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Storage Access:</td>
+        <td>@estimateForm.StorageGroundFloorAccessDestination</td>
+    </tr>
+    <tr>
+        <td style="width: 190px;">Other description:</td>
+        <td>@estimateForm.OtherDestination</td>
+    </tr>
     <tr>
         <td>Elevator Stairs Destination:</td>
         <td>@estimateForm.elevStairsDestination</td>
@@ -203,34 +209,34 @@ https://oldcitymovers.com<br />
         <td>Number of Rooms Destination:</td>
         <td>@estimateForm.numRoomsDestination</td>
     </tr>
-	<tr>
-		<td>Destination Building Name:</td>
-		<td>@estimateForm.loc2BuildingName</td>
-	</tr>
-	<tr>
-		<td>Destination Address 1:</td>
-		<td>@estimateForm.loc2Address1</td>
-	</tr>
-	@*<tr>
-		<td>Destination Address 2:</td>
-		<td>@estimateForm.loc2Address2</td>
-	</tr>*@
-	<tr>
-		<td>Destination Apartment:</td>
-		<td>@estimateForm.loc2Apartment</td>
-	</tr>
-	<tr>
-		<td>Destination City:</td>
-		<td>@estimateForm.loc2City</td>
-	</tr>
+    <tr>
+        <td>Destination Building Name:</td>
+        <td>@estimateForm.loc2BuildingName</td>
+    </tr>
+    <tr>
+        <td>Destination Address 1:</td>
+        <td>@estimateForm.loc2Address1</td>
+    </tr>
+    @*<tr>
+            <td>Destination Address 2:</td>
+            <td>@estimateForm.loc2Address2</td>
+        </tr>*@
+    <tr>
+        <td>Destination Apartment:</td>
+        <td>@estimateForm.loc2Apartment</td>
+    </tr>
+    <tr>
+        <td>Destination City:</td>
+        <td>@estimateForm.loc2City</td>
+    </tr>
     <tr>
         <td>Destination State:</td>
         <td>@estimateForm.loc2State</td>
     </tr>
-	<tr>
-		<td>Destination Postal Code:</td>
-		<td>@estimateForm.loc2Postal</td>
-	</tr>
+    <tr>
+        <td>Destination Postal Code:</td>
+        <td>@estimateForm.loc2Postal</td>
+    </tr>
     <tr>
         @{
 
@@ -256,99 +262,100 @@ https://oldcitymovers.com<br />
         <td>Driving Route:</td>
         <td><a href="https://maps.google.com/maps?@gRoute" target="_blank">Open in Google Maps</a></td>
     </tr>
-	<tr>
-		<td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Detail Information</b></td>
-	</tr>
-	@*<tr>
-		<td>Elevators or Stairs at Locations:</td>
-		<td>@helpers.trueFalse(estimateForm.elevStairs)</td>
-	</tr>
-	<tr>
-        <td style="vertical-align: top;">Explanation</td>
-		<td>@estimateForm.elevStairsExp</td>
-	</tr>*@
-	<tr>
-		<td colspan="2" style="border-top: 1px solid #CCC;"></td>
-	</tr>
-	<tr>
-		<td>Elevator Stairs Restrictions:</td>
-		<td>@helpers.trueFalse(estimateForm.elevStairsRes)</td>
-	</tr>
-	<tr>
-        <td style="vertical-align: top;">Explanation</td>
-		<td>@estimateForm.elevStairsResExp</td>
-	</tr>
-	<tr>Destination Address:
-		<td colspan="2" style="border-top: 1px solid #CCC;"></td>
-	</tr>
-	<tr>
-		<td>Stairs to front door:</td>
-		<td>@helpers.trueFalse(estimateForm.stairsToFront)</td>
-	</tr>
-	<tr>
-		<td>Number of steps at each location:</td>
-		<td>@estimateForm.stairsToFrontExp</td>
-	</tr>
-	<tr>
-		<td colspan="2" style="border-top: 1px solid #CCC;"></td>
-	</tr>
-	<tr>
-		<td>Long Walks to Front Door:</td>
-		<td>@helpers.trueFalse(estimateForm.longWalksToDoor)</td>
-	</tr>
-	<tr>
-        <td style="vertical-align: top;">Restrictions</td>
-		<td>@estimateForm.longWalksToDoorExp</td>
-	</tr>
-	@*<tr>
-		<td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Inventory List</b></td>
-	</tr>*@
-    @*@{
-        if (ViewBag.EstimateFormInventory != null)
-        {
-            foreach (var inv in ViewBag.EstimateFormInventory as IEnumerable<EstimateFormInventory>)
-            {
-                <tr>
-                    <td style="width:150px; vertical-align: top;">@inv.efRoom.RoomName</td>
-                    <td>
-                        @{
-                            if (@inv.CustomItem == null)
-                            {
-                                <text>( @inv.Qty )</text> @inv.efInvItem.inventoryItem
-                            }
-                            else
-                            {
-                                <text>( @inv.Qty )</text> @inv.CustomItem
-                            }
-                        }
-                    </td>
-                </tr>
-            }
-        }
-    }*@
-	
+    <tr>
+        <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Detail Information</b></td>
+    </tr>
     @*<tr>
+            <td>Elevators or Stairs at Locations:</td>
+            <td>@helpers.trueFalse(estimateForm.elevStairs)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;">Explanation</td>
+            <td>@estimateForm.elevStairsExp</td>
+        </tr>*@
+    <tr>
         <td colspan="2" style="border-top: 1px solid #CCC;"></td>
-    </tr>*@
+    </tr>
+    <tr>
+        <td>Elevator Stairs Restrictions:</td>
+        <td>@helpers.trueFalse(estimateForm.elevStairsRes)</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">Explanation</td>
+        <td>@estimateForm.elevStairsResExp</td>
+    </tr>
+    <tr>
+        Destination Address:
+        <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+    </tr>
+    <tr>
+        <td>Stairs to front door:</td>
+        <td>@helpers.trueFalse(estimateForm.stairsToFront)</td>
+    </tr>
+    <tr>
+        <td>Number of steps at each location:</td>
+        <td>@estimateForm.stairsToFrontExp</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+    </tr>
+    <tr>
+        <td>Long Walks to Front Door:</td>
+        <td>@helpers.trueFalse(estimateForm.longWalksToDoor)</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top;">Restrictions</td>
+        <td>@estimateForm.longWalksToDoorExp</td>
+    </tr>
+    @*<tr>
+            <td colspan="2" style="padding-top: 20px; border-bottom: 4px solid #000;"><b>Inventory List</b></td>
+        </tr>*@
+    @*@{
+            if (ViewBag.EstimateFormInventory != null)
+            {
+                foreach (var inv in ViewBag.EstimateFormInventory as IEnumerable<EstimateFormInventory>)
+                {
+                    <tr>
+                        <td style="width:150px; vertical-align: top;">@inv.efRoom.RoomName</td>
+                        <td>
+                            @{
+                                if (@inv.CustomItem == null)
+                                {
+                                    <text>( @inv.Qty )</text> @inv.efInvItem.inventoryItem
+                                }
+                                else
+                                {
+                                    <text>( @inv.Qty )</text> @inv.CustomItem
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        }*@
+
+    @*<tr>
+            <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+        </tr>*@
     <tr>
         <td style="vertical-align: top;">Inventory</td>
         <td>@estimateForm.InventoryWriteIn)</td>
     </tr>
-	<tr>
-		<td colspan="2" style="border-top: 1px solid #CCC;"></td>
-	</tr>
-	<tr>
+    <tr>
+        <td colspan="2" style="border-top: 1px solid #CCC;"></td>
+    </tr>
+    <tr>
         <td style="vertical-align: top;">Special Care Items:</td>
-		<td>@helpers.trueFalse(estimateForm.specialCareItem)</td>
-	</tr>
-	<tr>
+        <td>@helpers.trueFalse(estimateForm.specialCareItem)</td>
+    </tr>
+    <tr>
         <td style="vertical-align: top;">Restrictions</td>
-		<td>@estimateForm.specialCareItemExp</td>
-	</tr>
-	<tr>
-		<td>Estimated Box Count:</td>
-		<td>@estimateForm.estBoxCount</td>
-	</tr>
+        <td>@estimateForm.specialCareItemExp</td>
+    </tr>
+    <tr>
+        <td>Estimated Box Count:</td>
+        <td>@estimateForm.estBoxCount</td>
+    </tr>
     <tr>
         <td colspan="2" style="border-top: 1px solid #CCC;"></td>
     </tr>

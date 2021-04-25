@@ -39,7 +39,7 @@ namespace OCMovers_MC4
                 "~/Content/bootstrap.css",
                 "~/Content/themes/base/jquery-ui.css",
                 "~/Content/css/select2.css",
-                "~/Content/main.css"
+                "~/Content/responsive/main.css"
                 ));
 
             //bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

@@ -60,7 +60,8 @@ body {
   min-height: 100px;
 
   font-family: "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: white url("/Content/themes/base/images/img-background-texture.png") repeat;
+  /*background: white url("/Content/themes/base/images/img-background-texture.png") repeat;*/
+  background-color: #EFE9C9;
 }
 
 main {
@@ -71,7 +72,7 @@ main {
 }
 
 .container { 
-  max-width: @screen-lg;
+  max-width: @screen-lg; 
 }
 
 .space-bottom {
@@ -89,6 +90,15 @@ main {
     margin: 0 auto 16px;
     max-width: 250px;
   }
+
+  .row {
+      margin-bottom: 30px;
+  }
+
+  .lead {
+    font-size: 28px;
+    font-weight: 400;
+  }
 }
 
 .bottom-cta {
@@ -99,6 +109,8 @@ main {
     margin-bottom: 4px;
   }
 }
+
+
 
 .panel-body > h3 {
   margin-top: 0;
@@ -171,4 +183,11 @@ main {
     padding: 10px 20px;
 
   }
+}
+
+/* Captcha
+========================================================================== */
+
+.g-recaptcha {
+    margin-bottom: 20px;
 }

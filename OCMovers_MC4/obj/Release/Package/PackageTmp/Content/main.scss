@@ -432,6 +432,11 @@ ol
     width: 250px !important;
 }
 
+.select2-selection__clear
+{
+    display: none;
+}
+
 /* Form Elements
 ========================================================================== */
 form 
@@ -1914,4 +1919,11 @@ a.dropdown-toggle.error
     h3 {
         page-break-after: avoid;
     }
+}
+
+/* Captcha
+========================================================================== */
+
+.g-recaptcha {
+    margin-bottom: 20px; 
 }
